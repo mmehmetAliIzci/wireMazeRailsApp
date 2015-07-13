@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails',                '4.2.2'
+gem 'bcrypt',               '3.1.7'
 gem 'bootstrap-sass',       '3.2.0.0'
 gem 'faker',                '1.4.2'
 gem 'sass-rails',   '5.0.2'
@@ -30,5 +31,3 @@ group :production do
 end
 
 gem 'simple_form'
-gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
-                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'

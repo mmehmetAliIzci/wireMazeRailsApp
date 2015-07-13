@@ -1,0 +1,25 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :post_code %>
+    <%= f.input :contact %>
+    <%= f.input :personal_page %>
+    <%= f.input :birthday %>
+    <%= f.input :id_number %>
+    <%= f.input :presentation %>
+    <%= f.input :habits %>
+    <%= f.input :experience %>
+    <%= f.input :type %>
+    <%= f.hidden_field :active %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
