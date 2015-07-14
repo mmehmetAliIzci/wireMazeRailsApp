@@ -33,10 +33,10 @@
               <li><%= link_to "Notices", '#' %></li>
             <%else %>
               <li><%= link_to "Home",   root_path %></li>
-              <li><%= link_to "Companies", '#' %></li>
-              <li><%= link_to "Canditates", '#' %></li>
+              <li><%= link_to "Companies",  companies_path%></li>
+              <li><%= link_to "Canditates", canditates_path %></li>
               <li><%= link_to "Jobs", '#' %></li>
-              <li><%= link_to "News", '#' %></li>
+              <li><%= link_to "News", notices_path %></li>
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -46,7 +46,7 @@
             
 
             <% else %>
-                <li><%= link_to "Register",   signup_path %></li>
+                <li><%= link_to "Register",   before_sign_up_path %></li>
                 <li><%= link_to "Log in", login_path %></li>
             <% end %>
           </ul>

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,   only: [:index, :update,:show, :edit, :update, :destroy]
+  before_action :admin_user,   only: [:index, :destroy]
   before_action :set_user, only: [ :show, :edit, :update, :destroy]
   
   
@@ -15,11 +15,22 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
   def new
     @user = User.new
+    @user.type_of_users = params[:user_type]
+    if params[:user_type] == 1
+      render "users/new"
+    else
+      render "users/new_company"
+    end
+  end
+
+  def before_sign_up
+    render "users/before_sign_up"
   end
 
   # GET /users/1/edit
@@ -31,7 +42,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    @user.type_of_users = params[:type_of_users]
     respond_to do |format|
       if @user.save
         log_in @user
@@ -99,4 +110,5 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_url) unless isAdmin?(current_user)
     end
+    
 end

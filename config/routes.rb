@@ -2,15 +2,17 @@ Rails.application.routes.draw do
 
   resources :users
   resources :notices
+  resources :canditates
+  resources :companies
   root 'notices#index'
-
+  get 'before_sign_up' => 'users#before_sign_up'
   get    'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-#  get 'news/:id' => 'news#show'
   
-
+  #  get 'news/:id' => 'news#show'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
