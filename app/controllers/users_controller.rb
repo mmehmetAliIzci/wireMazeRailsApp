@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,   only: [:index, :destroy]
+  before_action :admin_user,   only: [:destroy]
   before_action :set_user, only: [ :show, :edit, :update, :destroy]
   
   
@@ -24,9 +24,10 @@ class UsersController < ApplicationController
     @user.type_of_users = params[:user_type]
     if params[:user_type] == 1
       render "users/new"
-    else
+    elseif params[:user_type] == 2
       render "users/new_company"
     end
+    
   end
 
   def before_sign_up
@@ -43,15 +44,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.type_of_users = params[:type_of_users]
-    respond_to do |format|
-      if @user.save
-        log_in @user
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
+    else
+      render 'new'
     end
   end
 
@@ -103,7 +101,11 @@ class UsersController < ApplicationController
     # Confirms the correct user.
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      if isAdmin?(current_user) || current_user?(@user)
+
+      else
+        redirect_to(root_url) 
+      end
     end
 
     # Confirms the correct user.
