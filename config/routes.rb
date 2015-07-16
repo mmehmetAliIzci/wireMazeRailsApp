@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-
+  
   get 'password_resets/new'
 
   get 'password_resets/edit'
 
   resources :users
+  resources :jobs
   resources :notices
   resources :canditates
   resources :companies

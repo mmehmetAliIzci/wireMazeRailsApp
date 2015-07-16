@@ -2,12 +2,20 @@
 <%= link_to image_tag(gravatar_url( @user)),  @user %>
 <span><%= link_to "view my profile",  @user %></span>
 <%if current_user.present? %>
-	<p><%current_user.name%></p>
 	<%if current_user.type_of_users == 1 && @user.type_of_users == 2 %>
-		<p>Ow yeah current user can interest to the company </p>
-	<%elseif current_user.type_of_users == 2  && @user.type_of_users == 1 %>
-		<p>Ow yeah current user can interest to the canditate</p>
-	<%elseif current_user.type_of_users == 3 %>
-		<p>You can fucking edit biatch</p>
+		<br>
+		<%= link_to 'Show Interest To Company', '#' , class: "btn btn-primary btn-sm" %>
+		<br>
+		<br>
+	<%elsif current_user.type_of_users == 2  && @user.type_of_users == 1 %>
+		<br>
+		<%= link_to 'Show Interest To Canditate', '#' , class: "btn btn-primary btn-sm" %>
+		<br>
+	<%elsif current_user.type_of_users == 3 %>
+	
+		<br>
+		<%= link_to 'Edit', '#' , class: "btn btn-primary btn-sm" %>
+		<br>
+		
 	<%end%>
 <%end%>

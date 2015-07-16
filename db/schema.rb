@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716143038) do
+ActiveRecord::Schema.define(version: 20150716154453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,17 +32,17 @@ ActiveRecord::Schema.define(version: 20150716143038) do
     t.string   "description"
     t.date     "valid_from"
     t.date     "valid_to"
-    t.integer  "company_id"
     t.string   "salary"
     t.string   "type_of_contract"
     t.integer  "profession_id"
     t.boolean  "active"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "user_id"
   end
 
-  add_index "jobs", ["company_id"], name: "index_jobs_on_company_id", using: :btree
   add_index "jobs", ["profession_id"], name: "index_jobs_on_profession_id", using: :btree
+  add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
   create_table "notices", force: :cascade do |t|
     t.string   "title"
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 20150716143038) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["profession_id"], name: "index_users_on_profession_id", using: :btree
 
-  add_foreign_key "jobs", "companies"
   add_foreign_key "jobs", "professions"
+  add_foreign_key "jobs", "users"
   add_foreign_key "users", "cities"
   add_foreign_key "users", "professions"
 end

@@ -1,0 +1,45 @@
+
+<p>
+    <strong>Title:</strong>
+    <%= @job.title %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @job.description %>
+    </p>
+
+    <p>
+      <strong>Valid From:</strong>
+      <%= @job.valid_from %>
+    </p>
+
+    <p>
+      <strong>Valid To:</strong>
+      <%= @job.valid_to %>
+    </p>
+
+    <p>
+      <strong>Company:</strong>
+      <%= link_to @job.user.name, @job.user %>
+    </p>
+
+    <p>
+      <strong>Salary:</strong>
+      <%= @job.salary %>
+    </p>
+
+    <p>
+      <strong>Type of Contract:</strong>
+      <%= @job.type_of_contract %>
+    </p>
+    
+    <p>
+      <strong>Type of Contract:</strong>
+      <%= @job.profession.area_name %>
+    </p>
+
+    <p>
+      <strong>Active:</strong>
+      <%= @job.active %>
+    </p>

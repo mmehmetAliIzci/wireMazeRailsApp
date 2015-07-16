@@ -1,0 +1,21 @@
+
+<div class="row">
+  <aside class="col-md-2">
+    <section class="user_info">
+      <%= render 'shared/job_basic_info' %>
+    </section>
+  </aside>
+  <div class="col-md-10">
+    <section class="micropost_form">
+      <%= render 'shared/job' %>
+    </section>
+  </div>
+</div>
+
+<% if current_user.present? %>
+  <% if @job.user == current_user %>
+    <%= link_to 'Edit', edit_job_path(@job) %>
+  <%end%>
+<%end%>
+ |
+<%= link_to 'Back', jobs_path %>

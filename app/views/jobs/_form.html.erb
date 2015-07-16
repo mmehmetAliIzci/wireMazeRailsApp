@@ -1,0 +1,19 @@
+<%= simple_form_for(@job) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :valid_from %>
+    <%= f.input :valid_to %>
+    <%= f.input :salary %>
+    <%= f.input :type_of_contract %>
+    <%= f.input :profession_id, :collection => professions, :label_method => :area_name , :value_method => :id, :label => "Profession", :include_blank => true %>
+    <%= f.input :active %>
+    
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit  ,class: "btn btn-primary" %>
+  </div>
+<% end %>

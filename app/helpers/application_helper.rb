@@ -8,4 +8,13 @@ module ApplicationHelper
       page_title + " | " + base_title
     end
   end
+
+  def cities
+  	@cities = City.all
+  end
+
+  def professions
+	 @professions = Profession.all
+  end
+
 end

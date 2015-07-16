@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @user.type_of_users = params[:user_type]
     if params[:user_type] == 1
       render "users/new"
-    elseif params[:user_type] == 2
+    elsif params[:user_type] == 2
       render "users/new_company"
     end
     
