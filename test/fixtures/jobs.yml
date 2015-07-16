@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  valid_from: 2015-07-16
+  valid_to: 2015-07-16
+  company_id: 
+  salary: MyString
+  type_of_contract: MyString
+  profession_id: 
+  active: false
+
+two:
+  title: MyString
+  description: MyString
+  valid_from: 2015-07-16
+  valid_to: 2015-07-16
+  company_id: 
+  salary: MyString
+  type_of_contract: MyString
+  profession_id: 
+  active: false
