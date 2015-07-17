@@ -16,6 +16,18 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    if @user.type_of_users == 1 && logged_in?
+      @jobs_interested = JobUserRelationship.find_by_sql("SELECT j.* FROM jobs j INNER JOIN (SELECT job_id FROM job_user_relationships jur WHERE jur.user_id = 1) as fp ON (j.id = fp.job_id)");
+      #@companies_interested 
+      render "canditate_home"
+    elsif @user.type_of_users == 2 &&logged_in?
+      #@canditates_interested
+      @jobs_served = Job.where("user_id = ?", @user.id )
+      render "company_home"
+    elsif @user.type_of_users == 3 && logged_in?
+      render "admin_home"
+    end
+      
   end
 
   # GET /users/new
@@ -89,14 +101,7 @@ class UsersController < ApplicationController
     end
 
     # Before filters
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
+    
     
     # Confirms the correct user.
     def correct_user

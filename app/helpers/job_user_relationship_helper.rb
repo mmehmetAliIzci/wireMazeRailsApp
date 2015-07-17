@@ -1,0 +1,2 @@
+module JobUserRelationshipHelper
+end

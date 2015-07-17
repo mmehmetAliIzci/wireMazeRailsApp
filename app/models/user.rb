@@ -14,6 +14,14 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+  def follow_job(job,user)
+    JobUserRelationship.create(job_id: job.id, user_id: user.id)
+  end
+
+  def following_job?(job,user)
+    JobUserRelationship.find_by(job_id: job.id, user_id: user.id)
+  end
+
   def self.search(search)
     where("name ILIKE ?", "%#{search}%")
   end

@@ -1,0 +1,12 @@
+<div class= "center jumbotron">
+  <% if @jobs_interested.present? %>
+    <ul class="users">
+      <% @jobs_interested.each do |job| %>
+         <%= render 'shared/job_item', job: job %>
+      <% end %>
+    </ul>
+    
+  <% else %>
+    <p>There are no jobs that you applied </p>
+  <% end %>
+</div>

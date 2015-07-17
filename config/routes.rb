@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  get 'job_user_relationship/create'
+
+  get 'job_user_relationship/destroy'
+
+  get 'users/new'
+
   get 'users/new'
 
   get 'password_resets/new'
