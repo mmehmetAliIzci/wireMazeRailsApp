@@ -21,7 +21,9 @@
 <div class= "container">
   <% if @companies.present? %>
     <ul class="users">
-      <%= render @companies %>
+      <% @companies.each do |user| %>
+         <%= render 'shared/user_item', user: user %>
+      <% end %>
     </ul>
     
   <% else %>

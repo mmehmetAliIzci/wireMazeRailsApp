@@ -33,5 +33,27 @@ notices = Notice.order(:created_at).take(6)
     created_at: Time.zone.now,
     updated_at: Time.zone.now
     )
+end
+
+10.times do
+  description = Faker::Lorem.sentence(5)
+  title = Faker::Lorem.sentence(3)
+  salary = "1000-1500"
+  type_of_contract = "Part-Time"
+  profession_id = "1"
+  user_id = "1"
+  Job.create!(
+    description: description,
+    title: title,
+    valid_from: Time.zone.now,
+    valid_to: Time.zone.now + 15.day,
+    type_of_contract: type_of_contract,
+    salary: salary,
+    profession_id: profession_id,
+    active: true,
+    created_at: Time.zone.now,
+    updated_at: Time.zone.now,
+    user_id: user_id
+    )
 
 end

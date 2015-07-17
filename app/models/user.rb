@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :city and :profession
   has_many :jobs
+  has_many :job_user_relationships
   
   attr_accessor :remember_token, :activation_token, :reset_token
   before_create :create_activation_digest

@@ -1,0 +1,53 @@
+
+<%if current_user.present? %>
+	<!-- We are displaying job item-->
+	<%if is_job_element %>
+		<%if current_user.type_of_users == 1%>
+			<br>
+			<%= link_to 'Apply To Job', '#' , class: "btn btn-primary btn-sm" %>
+			<br>
+		<%elsif current_user?(user)  || isAdmin?(current_user) %>
+			<%if isAdmin?(current_user) && !current_user?(user) %>
+				<%= link_to "Delete job", user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+			<%end%>
+			<br>
+			<%= link_to 'Edit', edit_job_path(job) , class: "btn btn-primary btn-sm" %>
+			<br>
+		<% end %>
+	<!-- We are displaying canditate/company(user) item-->
+	<%else%>
+
+		<!-- We are displaying canditate item-->
+		<%if user.type_of_users == 1 %>
+			<%if current_user?(user)  || isAdmin?(current_user) %>
+				<%if isAdmin?(current_user) && !current_user?(user) %>
+					<%= link_to "Delete Canditate", user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+				<%end%>
+				<br>
+				<%= link_to 'Edit', edit_user_path(user) , class: "btn btn-primary btn-sm" %>
+				<br>
+			<%elsif current_user.type_of_users == 2 %>
+				<br>
+				<%= link_to 'Show Interest To Canditate', '#' , class: "btn btn-primary btn-sm" %>
+				<br>
+			<%end%>
+		<!-- We are displaying company item-->
+		<%elsif user.type_of_users == 2 %>
+			<%if current_user?(user) || isAdmin?(current_user) %>
+				<%if isAdmin?(current_user) && !current_user?(user) %>
+					<%= link_to "Delete Company", user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+				<%end%>
+				<br>
+				<%= link_to 'Edit', edit_user_path(user) , class: "btn btn-primary btn-sm" %>
+				<br>
+			<%elsif current_user.type_of_users == 1 %>
+				<br>
+				<%= link_to 'Show Interest To Company', '#' , class: "btn btn-primary btn-sm" %>
+				<br>
+			<%end%>
+		<%end%>
+	<%end%>
+<%end%>

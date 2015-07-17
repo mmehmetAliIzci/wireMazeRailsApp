@@ -3,6 +3,9 @@ class JobsController < ApplicationController
 	before_action :correct_user,   only: [:edit, :update]
 
 	def index
+		@jobs = Job.all
+		@prev_profession = params[:profession]
+  		@prev_city = params[:city]
 	end
 
 	def show

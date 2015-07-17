@@ -1,3 +1,32 @@
-<h1>Jobs#index</h1>
+<h1>Listing Jobs</h1>
 
-<p>Find me in app/views/jobs/index.html.erb</p>
+<div class= "container">
+  <%= form_tag(jobs_path, :method => "get", id: "search-form") do %>
+   
+    <%= text_field_tag :search, params[:search], placeholder: "Search Jobs" , class: "form-control" %>  
+    <br>
+    <span class="label label-default">Select Profession area</span>
+    <br>
+    <%= select_tag "profession", ("<option></option>" + options_from_collection_for_select(professions, "id", "area_name", @prev_profession)).html_safe , class: "form-control" %>
+    <br>
+    <span class="label label-default">Select City </span>
+    <br>
+    <%= select_tag "city", ("<option></option>" + options_from_collection_for_select(cities, "id", "city_name", @prev_city)).html_safe , class: "form-control" %>
+    <br>
+    <%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
+    
+  <% end %>  
+</div>
+<br>
+<div class= "container">
+  <% if @jobs.present? %>
+    <ul class="users">
+      <% @jobs.each do |job| %>
+         <%= render 'shared/job_item', job: job %>
+      <% end %>
+    </ul>
+    
+  <% else %>
+    <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
+</div>

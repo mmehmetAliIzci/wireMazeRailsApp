@@ -1,7 +1,6 @@
 class CanditatesController < ApplicationController
   def index
   	
-
   	@canditates = User.where(type_of_users: '1').all
 
   	@prev_profession = params[:profession]

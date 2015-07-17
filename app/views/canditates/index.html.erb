@@ -21,7 +21,9 @@
 <div class= "container">
   <% if @canditates.present? %>
     <ul class="users">
-      <%= render @canditates %>
+      <% @canditates.each do |user| %>
+         <%= render 'shared/user_item', user: user %>
+      <% end %>
     </ul>
     
   <% else %>

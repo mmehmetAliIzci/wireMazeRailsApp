@@ -1,0 +1,12 @@
+<li>
+	
+	<%= link_to job.title, job %>
+	
+	<%= job.valid_from %>
+	<%= job.valid_to %>
+	<%= job.user.name %>
+	<%= job.description %>
+
+  <%= render 'shared/interest_buttons',  job: job, is_job_element: true %>
+  
+</li>
