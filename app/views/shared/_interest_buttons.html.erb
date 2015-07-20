@@ -10,46 +10,67 @@
 				<%= link_to 'Withdraw The Apply', job_user_relationship_destroy_path(job_id: job.id),  class: "btn btn-primary btn-sm" %>
 			<%end%>
 			<br>
-		<%elsif current_user?(user)  || isAdmin?(current_user) %>
-			<%if isAdmin?(current_user) && !current_user?(user) %>
-				<%= link_to "Delete job", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-			<%end%>
+		<%elsif job.user == current_user  || isAdmin?(current_user) %>
 			<br>
+			<%= link_to "Delete job", job, method: :delete,
+				data: { confirm: "You sure?" } , class: "btn btn-primary btn-sm"%>
+			<t>
 			<%= link_to 'Edit', edit_job_path(job) , class: "btn btn-primary btn-sm" %>
 			<br>
 		<% end %>
+
 	<!-- We are displaying canditate/company(user) item-->
 	<%else%>
 
 		<!-- We are displaying canditate item-->
 		<%if user.type_of_users == 1 %>
+			<!-- if current user or admin is viewing current user's profile. 
+			they can edit, admin can destroy-->
 			<%if current_user?(user)  || isAdmin?(current_user) %>
+				<!-- if current user is admin and not current user -->
 				<%if isAdmin?(current_user) && !current_user?(user) %>
-					<%= link_to "Delete Canditate", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+					<br><%= link_to "Delete Canditate", user, method: :delete,
+							data: { confirm: "You sure?" } ,class: "btn btn-primary btn-sm" %>
 				<%end%>
-				<br>
+				<t>
 				<%= link_to 'Edit', edit_user_path(user) , class: "btn btn-primary btn-sm" %>
 				<br>
+			<!-- if we are displaying canditate item to company-->
 			<%elsif current_user.type_of_users == 2 %>
 				<br>
-				<%= link_to 'Show Interest To Canditate', '#' , class: "btn btn-primary btn-sm" %>
+				<div id ="follow_unfollow_buttons">
+					<!-- if company following the user-->
+					<% if current_user.following?(user) %>
+						<%= render 'shared/unfollow', user: user %>
+					<!-- if company not following the user-->
+					<%else%>
+						<%= render 'shared/follow', user: user %>
+					<%end%>
+				</div>
 				<br>
 			<%end%>
 		<!-- We are displaying company item-->
 		<%elsif user.type_of_users == 2 %>
 			<%if current_user?(user) || isAdmin?(current_user) %>
-				<%if isAdmin?(current_user) && !current_user?(user) %>
-					<%= link_to "Delete Company", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-				<%end%>
 				<br>
+				<%if isAdmin?(current_user) && !current_user?(user) %>
+					<br><%= link_to "Delete Company", user, method: :delete,
+								data: { confirm: "You sure?" } , class: "btn btn-primary btn-sm" %><t>
+				<%end%>
+				<t>
 				<%= link_to 'Edit', edit_user_path(user) , class: "btn btn-primary btn-sm" %>
 				<br>
 			<%elsif current_user.type_of_users == 1 %>
 				<br>
-				<%= link_to 'Show Interest To Company', '#' , class: "btn btn-primary btn-sm" %>
+				<div id ="follow_unfollow_buttons">
+					<!-- if company following the user-->
+					<% if current_user.following?(user) %>
+						<%= render 'shared/unfollow', user: user %>
+					<!-- if company not following the user-->
+					<%else%>
+						<%= render 'shared/follow', user: user %>
+					<%end%>
+				</div>
 				<br>
 			<%end%>
 		<%end%>

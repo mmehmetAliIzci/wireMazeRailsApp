@@ -1,18 +1,8 @@
 Rails.application.routes.draw do
-  
-  get 'job_user_relationship/create'
 
-  get 'job_user_relationship/destroy'
-
-  get 'users/new'
-
-  get 'users/new'
-
-  get 'password_resets/new'
-
-  get 'password_resets/edit'
-
-  resources :users
+  resources :users 
+  resources :relationships, only: [:create, :destroy]
+  resources :job_user_relationship, only: [:create, :destroy]
   resources :jobs
   resources :notices
   resources :canditates

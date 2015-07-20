@@ -34,6 +34,8 @@ class JobsController < ApplicationController
 	end
 
 	def destroy
+		@job.destroy
+		redirect_to user_path(current_user)
 	end
 
 	private

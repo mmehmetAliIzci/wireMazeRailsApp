@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update, :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,   only: [:destroy]
-  before_action :set_user, only: [ :show, :edit, :update, :destroy]
+  before_action :set_user, only: [ :show, :edit, :update, :destroy,:following, :followers]
   
   
 
@@ -16,18 +16,42 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    if @user.type_of_users == 1 && logged_in?
-      @jobs_interested = JobUserRelationship.find_by_sql("SELECT j.* FROM jobs j INNER JOIN (SELECT job_id FROM job_user_relationships jur WHERE jur.user_id = 1) as fp ON (j.id = fp.job_id)");
-      #@companies_interested 
-      render "canditate_home"
-    elsif @user.type_of_users == 2 &&logged_in?
-      #@canditates_interested
-      @jobs_served = Job.where("user_id = ?", @user.id )
-      render "company_home"
-    elsif @user.type_of_users == 3 && logged_in?
-      render "admin_home"
+
+
+    if logged_in?
+
+      #if user is seeing its own page
+      if current_user?(@user)
+
+        #if user is canditate redirect to canditate_home
+        if @user.type_of_users == 1 
+          @jobs_interested = JobUserRelationship.find_by_sql("SELECT j.* FROM jobs j INNER JOIN (SELECT job_id FROM job_user_relationships jur WHERE jur.user_id = 1) as fp ON (j.id = fp.job_id)");
+          #@companies_interested 
+          @jobs_interested = @jobs_interested.paginate(page: params[:jobs_page] ,:per_page => 3)
+          @companies_interested_to_me = @user.followers.paginate(page: params[:companies_page],:per_page => 3)
+          render "canditate_home"
+
+        #if user is company redirect to company_home
+        elsif @user.type_of_users == 2 
+          #@canditates_interested
+          @jobs_served = @jobs_served = Job.where("user_id = ?", @user.id )
+          @jobs_served = @jobs_served.paginate(page: params[:jobs_page], :per_page => 3)
+          @canditates_interested_to_me = @user.followers.paginate(page: params[:companies_page],:per_page => 3)
+          render "company_home"
+
+        #if user is canditate admin to admin_home
+        elsif @user.type_of_users == 3 
+          render "admin_home"
+        end  
+      #if user seeing another users page
+      else
+        # GET /users/1
+      end
+    else
+      #if user is not logged in
+      # GET /users/1
     end
-      
+
   end
 
   # GET /users/new
