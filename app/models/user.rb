@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy                                
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  
+
   attr_accessor :remember_token, :activation_token, :reset_token
   before_create :create_activation_digest
 	before_save   :downcase_email
@@ -22,9 +22,6 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
-  def follow_job(job,user)
-    JobUserRelationship.create(job_id: job.id, user_id: user.id)
-  end
 
   def following_job?(job,user)
     JobUserRelationship.find_by(job_id: job.id, user_id: user.id)

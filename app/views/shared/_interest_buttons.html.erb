@@ -4,10 +4,10 @@
 	<%if is_job_element %>
 		<%if current_user.type_of_users == 1%>
 			<br>
-			<% if !current_user.following_job?(job,current_user)%>
-				<%= link_to 'Apply To Job', job_user_relationship_create_path(job_id: job.id), class: "btn btn-primary btn-sm" %>
+			<% if current_user.following_job?(job,current_user)%>
+				<%= render 'shared/unfollow_job', job: job , user: current_user%>
 			<%else%>
-				<%= link_to 'Withdraw The Apply', job_user_relationship_destroy_path(job_id: job.id),  class: "btn btn-primary btn-sm" %>
+				<%= render 'shared/follow_job', job: job , user: current_user%>
 			<%end%>
 			<br>
 		<%elsif job.user == current_user  || isAdmin?(current_user) %>

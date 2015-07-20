@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
 
+  get 'static_pages/home'
+
   resources :users 
   resources :relationships, only: [:create, :destroy]
-  resources :job_user_relationship, only: [:create, :destroy]
   resources :jobs
   resources :notices
   resources :canditates
   resources :companies
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :job_user_relationships
   root 'notices#index'
   get 'before_sign_up' => 'users#before_sign_up'
   get    'signup'  => 'users#new'

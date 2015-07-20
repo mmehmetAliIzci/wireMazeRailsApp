@@ -17,20 +17,17 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-
     if logged_in?
-
       #if user is seeing its own page
       if current_user?(@user)
-
         #if user is canditate redirect to canditate_home
         if @user.type_of_users == 1 
-          @jobs_interested = JobUserRelationship.find_by_sql("SELECT j.* FROM jobs j INNER JOIN (SELECT job_id FROM job_user_relationships jur WHERE jur.user_id = 1) as fp ON (j.id = fp.job_id)");
+          sql = "SELECT j.* FROM jobs j INNER JOIN (SELECT job_id FROM job_user_relationships jur WHERE jur.user_id = ?) as fp ON (j.id = fp.job_id)"
+          @jobs_interested = JobUserRelationship.find_by_sql [sql, @user.id]
           #@companies_interested 
           @jobs_interested = @jobs_interested.paginate(page: params[:jobs_page] ,:per_page => 3)
           @companies_interested_to_me = @user.followers.paginate(page: params[:companies_page],:per_page => 3)
           render "canditate_home"
-
         #if user is company redirect to company_home
         elsif @user.type_of_users == 2 
           #@canditates_interested
@@ -38,7 +35,6 @@ class UsersController < ApplicationController
           @jobs_served = @jobs_served.paginate(page: params[:jobs_page], :per_page => 3)
           @canditates_interested_to_me = @user.followers.paginate(page: params[:companies_page],:per_page => 3)
           render "company_home"
-
         #if user is canditate admin to admin_home
         elsif @user.type_of_users == 3 
           render "admin_home"
@@ -51,7 +47,6 @@ class UsersController < ApplicationController
       #if user is not logged in
       # GET /users/1
     end
-
   end
 
   # GET /users/new
@@ -137,7 +132,6 @@ class UsersController < ApplicationController
       end
     end
 
-    # Confirms the correct user.
     def admin_user
       redirect_to(root_url) unless isAdmin?(current_user)
     end
