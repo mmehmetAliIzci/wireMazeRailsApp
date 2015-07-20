@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :job_user_relationships
-  root 'notices#index'
+  root 'static_pages#home'
   get 'before_sign_up' => 'users#before_sign_up'
   get    'signup'  => 'users#new'
   get    'login'   => 'sessions#new'

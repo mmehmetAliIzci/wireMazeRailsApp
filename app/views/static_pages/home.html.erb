@@ -1,2 +1,60 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<h1>Last offers</h1>
+<div class= "container">
+  <% if @jobs_home.present? %>
+    <ul class="users">
+      <% @jobs_home.each do |job| %>
+         <%= render 'shared/job_item', job: job %>
+      <% end %>
+    </ul>
+    
+  <br>
+  <%= link_to 'Show All Jobs', jobs_path %>
+  <% else %>
+    <p>There are no job offers>.</p>
+  <% end %>
+</div>
+
+<h1>Last Companies</h1>
+<div class= "container">
+  <% if @companies_home.present? %>
+    <ul class="users">
+      <% @companies_home.each do |user| %>
+         <%= render 'shared/user_item', user: user %>
+      <% end %>
+    </ul>
+    <br>
+  <%= link_to 'Show All Companies', companies_path %>
+  <% else %>
+    <p>There are no companies</p>
+  <% end %>
+</div>
+
+<h1>Last notices</h1>
+<div class= "container">
+  <% if @notices_home.present? %>
+    <ul class="users">
+      <% @notices_home.each do |notice| %>
+         <%= render 'shared/notice_item', notice: notice %>
+      <% end %>
+    </ul>
+    <br>
+  <%= link_to 'Show All Notices', notices_path %>
+  <% else %>
+    <p>There are no notices </p>
+  <% end %>
+</div>
+
+<h1>Last Canditates</h1>
+<div class= "container">
+  <% if @canditates_home.present? %>
+    <ul class="users">
+      <% @canditates_home.each do |user| %>
+         <%= render 'shared/user_item', user: user %>
+      <% end %>
+    </ul>
+      <br>
+  <%= link_to 'Show All Canditates', canditates_path %>
+  <% else %>
+    <p>There are no canditates</p>
+  <% end %>
+</div>

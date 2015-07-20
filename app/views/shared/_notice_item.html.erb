@@ -1,0 +1,14 @@
+<li>
+	
+	<%= notice.title %>
+	<%= notice.date %>
+	<%= notice.prior %>
+	<%= notice.active %>
+	<%= link_to 'Show', notice %>
+
+	<% if logged_in? && isAdmin?(current_user) %>
+		<%= link_to 'Edit', edit_notice_path(notice) %>		
+	<%end%>
+
+ 
+</li>
