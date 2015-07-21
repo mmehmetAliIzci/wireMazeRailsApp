@@ -2,15 +2,26 @@
 
 <h1>Listing Notices</h1>
 
-<ul class="users">
-  <% @notices.each do |notice| %>
-    <%= render 'shared/notice_item', notice: notice  %>
+
+<div class= "canditatelist col-md-12">
+  <% if @notices.present? %>
+      <% @notices.each do |notice| %>
+        
+           <div class="users col-md-6">
+           <%= render 'shared/notice_item', notice: notice  %>
+           </div>
+         
+      <% end %>
+    <div class= "center col-md-12 ">
+    <%= will_paginate @canditates, :param_name => 'page' %>
+    </div>
+  <% else %>
+    <p>There are no News found</p>
   <% end %>
-</ul>
+</div>
 
 
 <br>
-
 <br>
 
 <%= link_to 'New Notice', new_notice_path %>

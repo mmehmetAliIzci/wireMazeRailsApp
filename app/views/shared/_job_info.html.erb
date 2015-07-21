@@ -1,45 +1,51 @@
 
-<p>
-    <strong>Title:</strong>
-    <%= @job.title %>
-    </p>
 
     <p>
       <strong>Description:</strong>
+      <p>
       <%= @job.description %>
     </p>
 
     <p>
-      <strong>Valid From:</strong>
+      <strong>From:</strong>
       <%= @job.valid_from %>
-    </p>
-
-    <p>
-      <strong>Valid To:</strong>
+    
+    
+      <strong>To:</strong>
       <%= @job.valid_to %>
     </p>
 
     <p>
       <strong>Company:</strong>
+      <p>
       <%= link_to @job.user.name, @job.user %>
+    </p>
+    
+
+    <p>
+      <strong>Area:</strong>
+      <p>
+      <%= @job.profession.area_name %>
+    </p>
+    
+
+    <p>
+      <strong>Type of Contract:</strong>
+      <p>
+      <%= @job.type_of_contract %>
     </p>
 
     <p>
       <strong>Salary:</strong>
+      <p>
       <%= @job.salary %>
     </p>
 
     <p>
-      <strong>Type of Contract:</strong>
-      <%= @job.type_of_contract %>
-    </p>
-    
-    <p>
-      <strong>Type of Contract:</strong>
-      <%= @job.profession.area_name %>
-    </p>
-
-    <p>
       <strong>Active:</strong>
-      <%= @job.active %>
+      <% if !@job.active %>
+        <p>This job is currently not active.</p>
+      <%else%>
+        <p>This job is active.</p>
+      <%end%>
     </p>

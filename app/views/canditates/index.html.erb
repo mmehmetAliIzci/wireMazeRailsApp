@@ -1,34 +1,47 @@
-
 <h1>Listing Canditates</h1>
-<div class= "container">
+<br>
+<br>
+<div class = "center ">
   <%= form_tag(canditates_path, :method => "get", id: "search-form") do %>
-   
-    <%= text_field_tag :search, params[:search], placeholder: "Search Canditates" , class: "form-control" %>  
+    <div class="col-md-3"> 
     <br>
-    <span class="label label-default">Select Profession area</span>
+      <%= text_field_tag :search, params[:search], placeholder: "Search Canditates" , class: "form-control " %>  
+    </div>
+    <div class="col-md-3"> 
+       <span class="label label-default">Select Profession area</span>
+       <%= select_tag "profession", ("<option></option>" + options_from_collection_for_select(professions, "id", "area_name", @prev_profession)).html_safe , class: "form-control " %> 
+    </div>
+    <div class="col-md-3"> 
+       <span class="label label-default">Select City </span>
+      <%= select_tag "city", ("<option></option>" + options_from_collection_for_select(cities, "id", "city_name", @prev_city)).html_safe , class: "form-control" %>
     <br>
-    <%= select_tag "profession", ("<option></option>" + options_from_collection_for_select(professions, "id", "area_name", @prev_profession)).html_safe , class: "form-control" %>
+    </div>
+    <div class="col-md-3"> 
+      <br>
+       <%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
+    </div>
     <br>
-    <span class="label label-default">Select City </span>
-    <br>
-    <%= select_tag "city", ("<option></option>" + options_from_collection_for_select(cities, "id", "city_name", @prev_city)).html_safe , class: "form-control" %>
-    <br>
-    <%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
-    
   <% end %>  
 </div>
 <br>
-<div class= "container">
+<div class= "canditatelist col-md-12">
   <% if @canditates.present? %>
-    <ul class="users">
-      <% @canditates.each do |user| %>
-         <%= render 'shared/user_item', user: user %>
-      <% end %>
-    </ul>
     
+      <% @canditates.each do |user| %>
+        
+           <div class="users col-md-6">
+           <%= render 'shared/user_item', user: user %>
+           </div>
+        
+      <% end %>
+    <div class= "center col-md-12 ">
+    <%= will_paginate @canditates, :param_name => 'page' %>
+    </div>
   <% else %>
-    <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+    <p>There are no canditates found !</p>
   <% end %>
 </div>
+
+
 
 <br>

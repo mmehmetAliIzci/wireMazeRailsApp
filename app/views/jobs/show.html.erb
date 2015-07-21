@@ -1,8 +1,14 @@
-
+<br>
+<br>
+<br>
+<br>
 <div class="row">
   <aside class="col-md-2">
     <section class="user_info">
       <%= render 'shared/job_basic_info' %>
+      <br>
+      <%= render 'shared/interest_buttons',  job: @job, is_job_element: true %>
+
     </section>
   </aside>
   <div class="col-md-10">
@@ -11,11 +17,25 @@
     </section>
   </div>
 </div>
+<br>
+<br>
+<div class = "jobs" >
+  <% if @other_jobs_from_same_area.present? %>
+    <h2>Other Job Offers From the Same Area</h2>
+      <ul class="users">
+        <% @other_jobs_from_same_area.each do |job| %>
+           <%= render 'shared/job_item', job: job %>
+        <% end %>
+      </ul>
+      
+    <br>
+    <%= link_to 'Show All Jobs', jobs_path %>
+    <% else %>
+      <p>There are no job offers from the same profession area>.</p>
+    <% end %>
+</div>
 
-<% if current_user.present? %>
-  <% if @job.user == current_user %>
-    <%= link_to 'Edit', edit_job_path(@job) %>
-  <%end%>
-<%end%>
- |
-<%= link_to 'Back', jobs_path %>
+
+
+
+

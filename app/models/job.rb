@@ -5,4 +5,8 @@ class Job < ActiveRecord::Base
   validates :title, presence: true, length: { maximum: 80 }
   validates :description, presence: true, length: { maximum: 200 }
 
+
+  def self.search(search)
+    where("title ILIKE ?", "%#{search}%")
+  end
 end

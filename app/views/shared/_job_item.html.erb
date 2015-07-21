@@ -1,12 +1,16 @@
 <li>
-	
-	<%= link_to job.title, job_path(job) %>
-	
-	<%= job.valid_from %>
-	<%= job.valid_to %>
-	<%= job.user.name %>
-	<%= job.description %>
 
-  <%= render 'shared/interest_buttons',  job: job, is_job_element: true %>
-  
+
+    <%= link_to image_tag(gravatar_url( job.user)),job_path(job) %>
+    <%= render 'shared/interest_buttons',  job: job, is_job_element: true %>
+
+		<%= link_to job.title, job_path(job) %>
+    <br>
+		<%= job.valid_from %>
+		<%= job.valid_to %>
+    <br>
+		<%= job.user.name %>
+		<%= job.description %>
+
+ 
 </li>

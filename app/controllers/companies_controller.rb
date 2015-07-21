@@ -10,7 +10,7 @@ class CompaniesController < ApplicationController
     @companies = @companies.where("profession_id = ?", params[:profession] ) if params[:profession].present?
     @companies = @companies.where("city_id = ?", params[:city] ) if params[:city].present?
  		
-		   	
+		@companies = @companies.paginate(page: params[:page], :per_page => 8)
   	
   end
 

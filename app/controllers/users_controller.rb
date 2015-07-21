@@ -58,7 +58,6 @@ class UsersController < ApplicationController
     elsif params[:user_type] == 2
       render "users/new_company"
     end
-    
   end
 
   def before_sign_up
