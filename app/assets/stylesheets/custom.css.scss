@@ -138,6 +138,10 @@ aside {
       margin-top: 50px;
     }
   }
+  section.job_info{
+    padding: 0px;
+    width: 80px
+  }
 }
 
 .gravatar {
@@ -207,6 +211,7 @@ input {
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid $gray-lighter;
   }
   .user {
     margin-top: 5em;
@@ -321,3 +326,9 @@ span.picture {
     padding: 0px;
     margin: 10px;
 }
+
+.row_for_job {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+

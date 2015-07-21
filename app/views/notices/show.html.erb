@@ -1,34 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @notice.title %>
+  <h2 class = "text-left"><%= @notice.title %></h2>
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @notice.date %>
-</p>
-
-<p>
-  <strong>Summary:</strong>
-  <%= @notice.summary %>
+  <%= @notice.date.to_date %>
 </p>
 
 <p>
   <strong>Text:</strong>
   <%= @notice.text %>
 </p>
+<br>
+<%= link_to 'Show All News', notices_path %> 
 
-<p>
-  <strong>Active:</strong>
-  <%= @notice.active %>
-</p>
-
-<p>
-  <strong>Prior:</strong>
-  <%= @notice.prior %>
-</p>
-
-<%= link_to 'Edit', edit_notice_path(@notice) %> |
-<%= link_to 'Back', notices_path %>

@@ -11,6 +11,30 @@
     </section>
   </div>
 </div>
+<% if @user.type_of_users == 2 %>
+  <div class= "container">
+    <h2 class= "aside" >Active Offers From This Company</h2>
+    <% if @other_jobs_from_same_company.present? %>
+      <ul class="users">
+        <% @other_jobs_from_same_company.each do |job| %>
+           <div class="users col-md-6">
+           <%= render 'shared/job_item', job: job %>
+           </div>
+        <% end %>
+      </ul>
+      <br>
+    <% else %>
+      <p>There are no offers from this company</p>
+    <% end %>
+    <br>
+    <%= link_to 'Show All Companies', companies_path %>
+</div>
+<% else%>
+
+<% end%>
+
+
+
 
 <%if current_user.present?%>
     <% if current_user?(@user) %>
@@ -18,4 +42,4 @@
     <% end %>
   <%end %>
 
-| <%= link_to 'Back', users_path %>
+

@@ -2,7 +2,12 @@ Rails.application.routes.draw do
 
   get 'static_pages/home'
 
-  resources :users 
+  resources :users do
+    member do
+      get :change_password
+      patch :update_password
+    end
+  end
   resources :relationships, only: [:create, :destroy]
   resources :jobs
   resources :notices
@@ -17,6 +22,7 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+
 
   
   #  get 'news/:id' => 'news#show'

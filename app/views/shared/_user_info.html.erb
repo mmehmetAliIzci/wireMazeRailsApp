@@ -1,59 +1,56 @@
+<br>
+<br>
 <p>
-    <strong>Email:</strong>
-    <%= @user.email %>
-    </p>
+  <%= @user.presentation %>
+</p>
 
-    <p>
-      <strong>Address:</strong>
-      <%= @user.address %>
-    </p>
+<p>
+  <strong>Profession:</strong>
+  <br>
+  <%= @user.profession.area_name %>
+</p>
 
-    <p>
-      <strong>Post code:</strong>
-      <%= @user.post_code %>
-    </p>
+<% if @user.type_of_users == 1 %>
+  <p>
+  <strong>Professional Situation:</strong>
+  <br>
+  <%  if @user.isworking %>
+    Employed
+  <% else %>
+    Unemployed
+  <% end %>
+  </p>
 
-    <p>
-      <strong>Contact:</strong>
-      <%= @user.contact %>
-    </p>
+  <p>
+    <strong>Habits:</strong>
+    <br>
+    <%= @user.habits %>
+  </p>
 
-    <p>
-      <strong>Personal page:</strong>
-      <%= @user.personal_page %>
-    </p>
+  <p>
+    <strong>Professional Experience:</strong>
+    <br>
+    <%= @user.experience %>
+  </p>
+<% end%>
 
-    <p>
-      <strong>Birthday:</strong>
-      <%= @user.birthday %>
-    </p>
+<p>
+  <strong>Adress</strong>
+  <br>
+  <%= @user.address %>
+  <br>
+  <%= @user.post_code %>
+</p>
 
-    <p>
-      <strong>Id number:</strong>
-      <%= @user.id_number %>
-    </p>
+<p>
+  <strong>Contact:</strong>
+  <%= @user.contact %>
+</p>
 
-    <p>
-      <strong>Presentation:</strong>
-      <%= @user.presentation %>
-    </p>
+<p>
+  <strong>Personal page:</strong>
+  <%= @user.personal_page %>
+</p>
 
-    <p>
-      <strong>Habits:</strong>
-      <%= @user.habits %>
-    </p>
 
-    <p>
-      <strong>Experience:</strong>
-      <%= @user.experience %>
-    </p>
 
-    <p>
-      <strong>Type:</strong>
-      <%= @user.type_of_users %>
-    </p>
-
-    <p>
-      <strong>Active:</strong>
-      <%= @user.active %>
-    </p>

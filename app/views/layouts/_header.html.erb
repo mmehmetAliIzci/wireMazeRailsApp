@@ -1,19 +1,7 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <%= link_to "sample app", '#', id: "logo" %>
-    <!--<nav>
-      <ul class="nav navbar-nav navbar-left">
-        <li><%= link_to "Home",   root_path %></li>
-        <li><%= link_to "Companies", '#' %></li>
-        <li><%= link_to "Canditates", '#' %></li>
-        <li><%= link_to "Jobs", '#' %></li>
-        <li><%= link_to "News", '#' %></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Register",   '#' %></li>
-        <li><%= link_to "Log in", '#' %></li>
-      </ul>
-    </nav>-->
+  
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -30,7 +18,7 @@
             <% if logged_in? && current_user.type_of_users == 3%>
               <li><%= link_to "Home",   root_path %></li>
               <li><%= link_to "Users", users_path %></li>
-              <li><%= link_to "Notices", '#' %></li>
+              <li><%= link_to "Notices", notices_path %></li>
             <%else %>
               <li><%= link_to "Home",   root_path %></li>
               <li><%= link_to "Companies",  companies_path%></li>

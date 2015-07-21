@@ -24,7 +24,9 @@
     <h2>Other Job Offers From the Same Area</h2>
       <ul class="users">
         <% @other_jobs_from_same_area.each do |job| %>
-           <%= render 'shared/job_item', job: job %>
+          <% if @job != job %>
+            <%= render 'shared/job_item', job: job %>
+          <% end %>
         <% end %>
       </ul>
       

@@ -30,7 +30,7 @@ class JobsController < ApplicationController
 	end
 
 	def create
-		@job = User.new(job_params)
+		@job = Job.new(job_params)
 	    if @job.save
 	      redirect_to @job
 	    else

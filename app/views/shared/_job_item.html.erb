@@ -1,16 +1,22 @@
 <li>
-
-
-    <%= link_to image_tag(gravatar_url( job.user)),job_path(job) %>
-    <%= render 'shared/interest_buttons',  job: job, is_job_element: true %>
-
-		<%= link_to job.title, job_path(job) %>
-    <br>
-		<%= job.valid_from %>
-		<%= job.valid_to %>
-    <br>
-		<%= job.user.name %>
-		<%= job.description %>
-
- 
+	<div class="row_for_job">
+		<aside class="col-md-2">
+		<section class="job_info">
+		  <%= link_to image_tag(gravatar_url( job.user)),job_path(job) %>
+	    <br>
+	    <%= render 'shared/interest_buttons',  job: job, is_job_element: true %>
+		</section>
+		</aside>
+		<div class="col-md-10">
+		<section style="padding-left: 20px;">
+		  	<%= link_to job.title, job_path(job) %>
+		    <br>
+			<%= job.valid_from %>
+			<%= job.valid_to %>
+		    <br>
+			<%= job.user.name %>
+			<%= job.description %>
+		</section>
+		</div>
+	</div>
 </li>

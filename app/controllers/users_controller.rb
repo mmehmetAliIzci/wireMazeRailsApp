@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,   only: [:destroy]
-  before_action :set_user, only: [ :show, :edit, :update, :destroy,:following, :followers]
+  before_action :set_user, only: [:update_password, :show, :edit, :update, :destroy,:following, :followers]
   
   
 
@@ -17,36 +17,38 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    if logged_in?
-      #if user is seeing its own page
-      if current_user?(@user)
-        #if user is canditate redirect to canditate_home
-        if @user.type_of_users == 1 
-          sql = "SELECT j.* FROM jobs j INNER JOIN (SELECT job_id FROM job_user_relationships jur WHERE jur.user_id = ?) as fp ON (j.id = fp.job_id)"
-          @jobs_interested = JobUserRelationship.find_by_sql [sql, @user.id]
-          #@companies_interested 
-          @jobs_interested = @jobs_interested.paginate(page: params[:jobs_page] ,:per_page => 3)
-          @companies_interested_to_me = @user.followers.paginate(page: params[:companies_page],:per_page => 3)
-          render "canditate_home"
-        #if user is company redirect to company_home
-        elsif @user.type_of_users == 2 
-          #@canditates_interested
-          @jobs_served = @jobs_served = Job.where("user_id = ?", @user.id )
-          @jobs_served = @jobs_served.paginate(page: params[:jobs_page], :per_page => 3)
-          @canditates_interested_to_me = @user.followers.paginate(page: params[:companies_page],:per_page => 3)
-          render "company_home"
-        #if user is canditate admin to admin_home
-        elsif @user.type_of_users == 3 
-          render "admin_home"
-        end  
-      #if user seeing another users page
-      else
-        # GET /users/1
-      end
+    
+    #if user is seeing its own page
+    if current_user?(@user) && logged_in?
+      #if user is canditate redirect to canditate_home
+      if @user.type_of_users == 1 
+        sql = "SELECT j.* FROM jobs j INNER JOIN (SELECT job_id FROM job_user_relationships jur WHERE jur.user_id = ?) as fp ON (j.id = fp.job_id)"
+        @jobs_interested = JobUserRelationship.find_by_sql [sql, @user.id]
+        @jobs_interested = @jobs_interested.paginate(page: params[:jobs_page] ,:per_page => 3)
+        @companies_interested_to_me = @user.followers.paginate(page: params[:companies_page],:per_page => 3)
+        render "canditate_home"
+      #if user is company redirect to company_home
+      elsif @user.type_of_users == 2 
+
+        @jobs_served_all = Job.where("user_id = ?", @user.id)
+
+        @jobs_served_active = @jobs_served_all.where("active = true")
+        @jobs_served_passive = @jobs_served_all.where("active = false")
+
+        @jobs_served_active = @jobs_served_active.paginate(page: params[:jobs_page_active], :per_page => 3)
+        @jobs_served_passive = @jobs_served_passive.paginate(page: params[:jobs_page_passive], :per_page => 3)
+        @canditates_interested_to_me = @user.followers.paginate(page: params[:companies_page],:per_page => 3)
+        render "company_home"
+      #if user is canditate admin to admin_home
+      elsif @user.type_of_users == 3 
+        render "admin_home"
+      end  
+    #if user seeing another users page or not logged_in
     else
-      #if user is not logged in
-      # GET /users/1
+      sql = "SELECT jobs.* FROM jobs WHERE jobs.user_id = ? ORDER BY id DESC LIMIT 4"
+      @other_jobs_from_same_company = Job.find_by_sql [sql, @user.id]
     end
+    
   end
 
   # GET /users/new
@@ -69,6 +71,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def change_password
+    render "users/change_password"
+  end
+
+
   # POST /users
   # POST /users.json
   def create
@@ -81,6 +88,21 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def update_password
+
+    user = User.find(params[:user][:id])
+    if user && user.authenticate(params[:user][:old_password])
+      if @user.update(user_params)
+          flash[:info] = "User password successfully updated.."
+          redirect_to @user
+      end
+    else
+      flash[:danger] = "Please check the fields"
+        render "users/change_password"
+    end
+
   end
 
   # PATCH/PUT /users/1
@@ -115,11 +137,13 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :name, :address, :post_code, :contact, :personal_page, :birthday, :id_number, :presentation, :habits, :experience, :type_of_users, :active)
+      params.require(:user).permit(:email, :password, :password_confirmation, :name, :address, :post_code, :contact, :personal_page, :birthday, :id_number, :presentation, :isworking, :habits, :experience, :type_of_users, :active)
     end
 
-    # Before filters
-    
+    def change_pass_params
+      params.require(:user).permit(:old_password)
+    end
+
     
     # Confirms the correct user.
     def correct_user

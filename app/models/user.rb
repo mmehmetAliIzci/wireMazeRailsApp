@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  belongs_to :city and :profession
+  belongs_to :city
+  belongs_to :profession
   has_many :jobs
   has_many :job_user_relationships
   has_many :active_relationships, class_name:  "Relationship",
@@ -103,8 +104,18 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
+
+  def valid_password?(password)
+      if self.password == password
+        return true
+      else
+        return false
+      end
+  end
   
 	private
+
+    
 
     # Converts email to all lower-case.
     def downcase_email
