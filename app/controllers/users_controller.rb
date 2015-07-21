@@ -72,6 +72,7 @@ class UsersController < ApplicationController
   end
 
   def change_password
+    @user = User.find(params[:id])
     render "users/change_password"
   end
 
@@ -92,15 +93,15 @@ class UsersController < ApplicationController
 
   def update_password
 
-    user = User.find(params[:user][:id])
-    if user && user.authenticate(params[:user][:old_password])
-      if @user.update(user_params)
+    user = User.find(params[:id])
+    if user && user.authenticate(params[:user][:old_password]) && @user.update(user_params)
+       
           flash[:info] = "User password successfully updated.."
           redirect_to @user
-      end
+
     else
       flash[:danger] = "Please check the fields"
-        render "users/change_password"
+      render "users/change_password"
     end
 
   end
