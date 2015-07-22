@@ -1,7 +1,7 @@
 <br>
 <br>
 <p>
-  <%= @user.presentation %>
+  <%= @user.presentation.html_safe %>
 </p>
 
 <p>
@@ -24,13 +24,13 @@
   <p>
     <strong>Habits:</strong>
     <br>
-    <%= @user.habits %>
+    <%= @user.habits.html_safe %>
   </p>
 
   <p>
     <strong>Professional Experience:</strong>
     <br>
-    <%= @user.experience %>
+    <%= @user.experience.html_safe %>
   </p>
 <% end%>
 
