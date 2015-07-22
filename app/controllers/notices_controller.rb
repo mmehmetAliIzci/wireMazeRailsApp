@@ -56,11 +56,8 @@ class NoticesController < ApplicationController
   # DELETE /notices/1
   # DELETE /notices/1.json
   def destroy
-    @notice.destroy
-    respond_to do |format|
-      format.html { redirect_to notices_url, notice: 'Notice was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @notice.destroy  
+    redirect_to backoffice_notices_all_path
   end
 
   private

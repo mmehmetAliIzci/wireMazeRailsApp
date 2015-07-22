@@ -12,18 +12,23 @@
 
 
 //= require jquery
+//= require jquery.turbolinks
 //= require 'tinymce-jquery'
 //= require bootstrap-sprockets
-//= require bootstrap-datepicker
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap
 //= require turbolinks
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.js
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.de.js
 
 
 $(document).on("page:load ready", function(){
     $("input.datepicker").datepicker({
-
+    	locale: {
+      	format: 'YYYY-MM-DD'
+    	},
     	autoclose: true,
     	todayHighlight: true
     });

@@ -19,8 +19,8 @@
         <td><%= notice.prior %></td>
         <td><%= notice.active %></td>
         <td><%= link_to 'Show', backoffice_notice_show_path(notice) %></td>
-        <td><%= link_to 'Edit', backoffice_notice_edit_path(notice) %></td>
-        <td><%= link_to 'Destroy', backoffice_user_delete_path(notice), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_notice_path(notice) %></td>
+        <td><%= link_to 'Destroy', notice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
