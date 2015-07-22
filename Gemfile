@@ -36,3 +36,4 @@ group :production do
 end
 
 gem 'simple_form'
+gem "paperclip", "~> 4.3"

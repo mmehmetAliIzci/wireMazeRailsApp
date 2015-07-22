@@ -26,9 +26,7 @@
 
 $(document).on("page:load ready", function(){
     $("input.datepicker").datepicker({
-    	locale: {
-      	format: 'YYYY-MM-DD'
-    	},
+    	format: "yyyy-mm-dd",
     	autoclose: true,
     	todayHighlight: true
     });

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721154607) do
+ActiveRecord::Schema.define(version: 20150722183122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,9 +99,9 @@ ActiveRecord::Schema.define(version: 20150721154607) do
     t.string   "habits"
     t.string   "experience"
     t.integer  "type_of_users"
-    t.boolean  "active",            default: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.boolean  "active",              default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "remember_digest"
     t.string   "activation_digest"
     t.datetime "activated_at"
@@ -110,6 +110,10 @@ ActiveRecord::Schema.define(version: 20150721154607) do
     t.integer  "profession_id"
     t.integer  "city_id"
     t.boolean  "isworking"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree

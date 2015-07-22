@@ -1,4 +1,4 @@
 <h1><%= @user.name %></h1>
-<%= link_to image_tag(gravatar_url( @user)),  @user %>
+<%= link_to image_tag(@user.avatar.url(:medium)), @user %>
 <span><%= link_to "view my profile",  @user %></span>
 <%= render 'shared/interest_buttons',  user: @user, is_job_element: false %>

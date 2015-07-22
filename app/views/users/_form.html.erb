@@ -1,9 +1,10 @@
 
-<%= simple_form_for(@user, :html => {:novalidate => true}) do |f| %>
+<%= simple_form_for(@user, :html => {:novalidate => true ,:multipart => true}) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= hidden_field_tag :type_of_users, @user.type_of_users  %>
+    <%= f.input :avatar, as: :file %>
     <%= f.input :email %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
@@ -12,8 +13,10 @@
     <%= f.input :post_code %>
     <%= f.input :contact %>
     <%= f.input :personal_page %>
-    <%= f.input :birthday, as: :datepicker %>
+    <%= f.input :birthday, as: :datepicker, required: true %>
     <%= f.input :id_number %>
+
+    <%= f.association :profession, label_method: :area_name, value_method: :id %>
     <%= f.label :presentation %>
     <%= f.text_area :presentation, :class => "tinymce"  %>
     <br>
