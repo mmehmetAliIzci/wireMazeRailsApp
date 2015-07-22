@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :avatar, :styles => { :medium => "165x165", :thumb => "100x100>" }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  has_attached_file :cv
+  validates_attachment_content_type :cv, :content_type => ['application/pdf', 'application/msword', 'text/plain'], :if => :cv_attached?
+
   belongs_to :city
   belongs_to :profession
   has_many :jobs , dependent: :destroy
@@ -114,6 +117,10 @@ class User < ActiveRecord::Base
       else
         return false
       end
+  end
+
+  def cv_attached?
+    self.cv.file?
   end
   
 	private

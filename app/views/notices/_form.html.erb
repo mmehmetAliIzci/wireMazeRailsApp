@@ -1,7 +1,8 @@
-<%= simple_form_for(@notice, :html => {:novalidate => true}) do |f| %>
+<%= simple_form_for(@notice, :html => {:novalidate => true ,:multipart => true}) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :avatar, as: :file %>
     <%= f.input :title %>
     <%= f.input :date, as: :datepicker, required: true,
     :placeholder => 'Select date', input_html: {class: "form-control"},

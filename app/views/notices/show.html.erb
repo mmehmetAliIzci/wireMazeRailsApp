@@ -3,14 +3,16 @@
 <p>
   <h2 class = "text-left"><%= @notice.title %></h2>
 </p>
-
 <p>
-  <%= @notice.date %>
+<%= link_to image_tag(notice.avatar.url(:thumb)), notice  %>
+</p>
+<p>
+  <%= @notice.date.to_date %>
 </p>
 
 <p>
   <strong>Text:</strong>
-  <%= @notice.text %>
+  <%= @notice.text.html_safe %>
 </p>
 <br>
 <%= link_to 'Show All News', notices_path %> 

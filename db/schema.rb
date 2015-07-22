@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722183122) do
+ActiveRecord::Schema.define(version: 20150722203318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,10 +47,14 @@ ActiveRecord::Schema.define(version: 20150722183122) do
     t.string   "type_of_contract"
     t.integer  "profession_id"
     t.boolean  "active"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "user_id"
     t.integer  "city_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "jobs", ["city_id"], name: "index_jobs_on_city_id", using: :btree
@@ -64,8 +68,12 @@ ActiveRecord::Schema.define(version: 20150722183122) do
     t.string   "text"
     t.boolean  "active"
     t.boolean  "prior"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "professions", force: :cascade do |t|
@@ -90,8 +98,8 @@ ActiveRecord::Schema.define(version: 20150722183122) do
     t.string   "password_digest"
     t.string   "name"
     t.string   "address"
-    t.integer  "post_code"
-    t.integer  "contact"
+    t.string   "post_code"
+    t.string   "contact"
     t.string   "personal_page"
     t.date     "birthday"
     t.string   "id_number"
@@ -114,6 +122,10 @@ ActiveRecord::Schema.define(version: 20150722183122) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "cv_file_name"
+    t.string   "cv_content_type"
+    t.integer  "cv_file_size"
+    t.datetime "cv_updated_at"
   end
 
   add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree

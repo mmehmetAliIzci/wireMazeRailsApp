@@ -1,4 +1,7 @@
 class Job < ActiveRecord::Base
+	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  
   belongs_to :user
   belongs_to :profession
   has_many :job_user_relationship

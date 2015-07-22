@@ -4,34 +4,27 @@
 
   <div class="form-inputs">
     <%= hidden_field_tag :type_of_users, @user.type_of_users  %>
-
-    <%= f.input :avatar, as: :file %>
+    
     <%= f.input :email %>
     <% if !isEdit%>
        <%= f.input :password %>
       <%= f.input :password_confirmation %>
     <% end%>
-  
     <%= f.input :name %>
+    <%= f.input :avatar, as: :file %>
     <%= f.input :address %>
     <%= f.input :post_code %>
     <%= f.input :contact %>
     <%= f.input :personal_page %>
-    <%= f.input :birthday, as: :datepicker, required: true  %>
-    <%= f.input :cv, as: :file %>
+    <%= f.input :birthday, as: :datepicker, required: true %>
     <%= f.input :id_number %>
+
+    
     <%= f.association :city, label_method: :city_name, value_method: :id , required: true %>
-    <br>
-    <%= f.association :profession, label_method: :area_name, value_method: :id , required: true %>
     <%= f.label :presentation %>
     <%= f.text_area :presentation, :class => "tinymce"  %>
     <br>
-    <%= f.label :habits %>
-    <%= f.text_area :habits, :class => "tinymce"  %>
-     <br>
-    <%= f.label :experience %>
-    <%= f.text_area :experience , :class => "tinymce"%>
-    <%= f.input :isworking, :collection => [['Employed',true ], ['UnEmployed', false]]%>
+    <%= f.association :profession, label_method: :area_name, value_method: :id , required: true %>
     <%= f.hidden_field :active  %>
     
   </div>

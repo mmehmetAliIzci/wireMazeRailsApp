@@ -1,6 +1,6 @@
 <h1>Listing Notices</h1>
 
-<table>
+<table class="table  table-bordered table-striped">
   <thead>
     <tr>
       <th>Notice</th>
@@ -23,6 +23,7 @@
         <td><%= link_to 'Destroy', notice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <%= will_paginate @notices, :param_name => 'page' %>
   </tbody>
 </table>
 

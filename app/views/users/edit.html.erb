@@ -1,7 +1,7 @@
 <%= tinymce_assets %>
 <h1>Editing User</h1>
 
-<%= render 'form' %>
+<%= render 'form' , isEdit: true%>
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>

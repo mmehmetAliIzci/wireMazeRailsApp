@@ -1,10 +1,10 @@
-<%= simple_form_for(@job) do |f| %>
+<%= simple_form_for(@job, :html => {:novalidate => true ,:multipart => true}) do |f| %>
   <%= f.error_notification %>
   
   <%=f.hidden_field :user_id, :value => current_user.id %>
 
   <div class="form-inputs">
-    
+    <%= f.input :avatar, as: :file %>
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :valid_from, as: :datepicker, required: false,

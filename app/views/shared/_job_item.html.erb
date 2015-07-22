@@ -2,8 +2,7 @@
 	<div class="row_for_job">
 		<aside class="col-md-2">
 		<section class="job_info">
-		  <%= link_to image_tag(gravatar_url( job.user)),job_path(job) %>
-	    
+	    	<%= link_to image_tag(job.avatar.url(:thumb)), job %>
 		</section>
 
 		</aside>
