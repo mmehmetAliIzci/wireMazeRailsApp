@@ -9,8 +9,10 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//= require tinymce
+
+
 //= require jquery
+//= require 'tinymce-jquery'
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require jquery_ujs

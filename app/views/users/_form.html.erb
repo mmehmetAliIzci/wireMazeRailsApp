@@ -1,4 +1,4 @@
-<%= tinymce %>
+
 <%= simple_form_for(@user, :html => {:novalidate => true}) do |f| %>
   <%= f.error_notification %>
 
@@ -17,7 +17,7 @@
     label: "Birthday: " %>
     <%= f.input :id_number %>
     <%= f.label :presentation %>
-    <%= f.text_area :presentation ,:class => "tinymce"%>
+    <%= f.text_area :presentation, :class => "tinymce"  %>
     <br>
     <%= f.label :habits %>
     <%= f.text_area :habits, :class => "tinymce"  %>
