@@ -3,7 +3,9 @@
 
   <div class="form-inputs">
     <%= f.input :title %>
-    <%= f.input :date %>
+    <%= f.input :date, as: :datepicker, required: false,
+    :placeholder => 'Select date', input_html: {class: "form-control"},
+    label: "Date: " %>
     <%= f.input :summary %>
     <%= f.input :text %>
     <%= f.input :active %>

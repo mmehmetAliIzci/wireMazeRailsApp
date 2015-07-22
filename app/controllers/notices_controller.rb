@@ -1,5 +1,6 @@
 class NoticesController < ApplicationController
   before_action :set_notice, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /notices
   # GET /notices.json
@@ -29,7 +30,7 @@ class NoticesController < ApplicationController
 
     respond_to do |format|
       if @notice.save
-        format.html { redirect_to @notice, notice: 'Notice was successfully created.' }
+        format.html { redirect_to @notice }
         format.json { render :show, status: :created, location: @notice }
       else
         format.html { render :new }
@@ -67,6 +68,8 @@ class NoticesController < ApplicationController
     def set_notice
       @notice = Notice.find(params[:id])
     end
+
+   
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notice_params

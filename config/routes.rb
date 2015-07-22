@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'static_pages/home'
-
   resources :users do
     member do
       get :change_password
@@ -23,6 +21,22 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
 
+  get 'backoffice_home' => 'backoffice#home'
+  get 'backoffice_users_all'  => 'backoffice#index_users'
+  get 'backoffice_user_show' => 'backoffice#show_user'
+  get 'backoffice_user_edit' =>  'backoffice#edit_user'
+  patch 'backoffice_user_update' =>  'backoffice#update_user'
+  delete 'backoffice_user_delete' => 'backoffice#destroy_user'
+  get 'backoffice_user_change_password' => 'backoffice#change_user_password'
+  patch 'backoffice_user_update_password' => 'backoffice#update_user_password'
+
+
+  get 'backoffice_notices_all'  => 'backoffice#index_notices'
+  get 'backoffice_notice_show' => 'backoffice#show_notice'
+  get 'backoffice_notice_edit' =>  'backoffice#edit_notice'
+  post 'backoffice_notice_create' => 'backoffice#create_notice'
+  patch 'backoffice_notice_update' =>  'backoffice#update_notice'
+  delete 'backoffice_notice_delete' => 'backoffice#destroy_notice'
 
   
   #  get 'news/:id' => 'news#show'

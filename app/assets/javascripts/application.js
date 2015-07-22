@@ -9,14 +9,20 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+//= require tinymce
 //= require jquery
 //= require bootstrap-sprockets
+//= require bootstrap-datepicker
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 //= require bootstrap
-//= require tinymce
+//= require turbolinks
 
 
+$(document).on("page:load ready", function(){
+    $("input.datepicker").datepicker({
 
+    	autoclose: true,
+    	todayHighlight: true
+    });
+});

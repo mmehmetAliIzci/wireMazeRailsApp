@@ -1,0 +1,27 @@
+<h1>Detail of User</h1>
+
+<p>
+<strong>Name</strong>	
+<%= @user.name%>
+</p>
+
+<p>
+<strong>Email</strong>	
+<%= @user.email%>
+</p>
+
+<p>
+<strong>Type</strong>	
+<%= enum_user_type(@user.type_of_users)%>
+</p>
+
+<p>
+<strong>Active ?</strong>	
+<%= @user.active%>
+</p>
+
+
+<%= link_to 'Change Password', backoffice_user_change_password_path(@user) %>
+<%= link_to 'Edit', backoffice_user_edit_path(@user) %>
+<%= link_to 'Delete', backoffice_user_delete_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'List of Users', backoffice_users_all_path %>

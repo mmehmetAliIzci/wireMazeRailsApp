@@ -22,4 +22,14 @@ module ApplicationHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
     return gravatar_url
   end
+
+  def enum_user_type(type)
+    if type == 1
+      return "Canditate"
+    elsif type == 2
+      return "Company"
+    elsif type == 3
+      return "Backoffice"
+    end
+  end 
 end

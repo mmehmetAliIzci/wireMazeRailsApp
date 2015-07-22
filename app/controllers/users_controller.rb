@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,   only: [:destroy]
-  before_action :set_user, only: [:update_password, :show, :edit, :update, :destroy,:following, :followers]
+  before_action :set_user, only: [:change_password,:update_password, :show, :edit, :update, :destroy,:following, :followers]
   
   
 
@@ -16,8 +16,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
-    
     #if user is seeing its own page
     if current_user?(@user) && logged_in?
       #if user is canditate redirect to canditate_home
@@ -41,7 +39,7 @@ class UsersController < ApplicationController
         render "company_home"
       #if user is canditate admin to admin_home
       elsif @user.type_of_users == 3 
-        render "admin_home"
+        redirect_to backoffice_home_path
       end  
     #if user seeing another users page or not logged_in
     else
@@ -68,7 +66,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
   end
 
   def change_password
@@ -92,8 +89,8 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    user = User.find(params[:id])
-    if user && user.authenticate(params[:user][:old_password]) && @user.update(user_params)
+    
+    if @user && @user.authenticate(params[:user][:old_password]) && @user.update(user_params)
         flash[:info] = "User password successfully updated.."
         redirect_to @user
     else
@@ -149,12 +146,11 @@ class UsersController < ApplicationController
       if isAdmin?(current_user) || current_user?(@user)
 
       else
+        flash.now[:danger] = "Restricted Area"
         redirect_to(root_url) 
       end
     end
 
-    def admin_user
-      redirect_to(root_url) unless isAdmin?(current_user)
-    end
+    
     
 end

@@ -12,7 +12,9 @@
     <%= f.input :post_code %>
     <%= f.input :contact %>
     <%= f.input :personal_page %>
-    <%= f.input :birthday %>
+    <%= f.input :birthday, as: :datepicker, required: false,
+    :placeholder => 'Select date', input_html: {class: "form-control"},
+    label: "Birthday: " %>
     <%= f.input :id_number %>
     <%= f.label :presentation %>
     <%= f.text_area :presentation ,:class => "tinymce"%>

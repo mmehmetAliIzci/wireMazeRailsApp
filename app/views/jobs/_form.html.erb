@@ -7,8 +7,12 @@
     
     <%= f.input :title %>
     <%= f.input :description %>
-    <%= f.input :valid_from %>
-    <%= f.input :valid_to %>
+    <%= f.input :valid_from, as: :datepicker, required: false,
+    :placeholder => 'Select date', input_html: {class: "form-control"},
+    label: "Valid From: " %>
+    <%= f.input :valid_to, as: :datepicker, required: false,
+    :placeholder => 'Select date', input_html: {class: "form-control"},
+    label: "Valid Untill: " %>
     <%= f.input :salary %>
     <%= f.input :type_of_contract %>
     <%= f.input :profession_id, :collection => professions, :label_method => :area_name , :value_method => :id, :label => "Profession", :include_blank => true %>

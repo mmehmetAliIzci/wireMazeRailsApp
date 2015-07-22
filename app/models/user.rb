@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :city
   belongs_to :profession
-  has_many :jobs
+  has_many :jobs , dependent: :destroy
   has_many :job_user_relationships
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",

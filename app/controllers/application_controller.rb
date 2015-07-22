@@ -14,4 +14,12 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
       end
     end
+  #admin_user
+     def admin_user
+      if isAdmin?(current_user)
+      else
+        flash.now[:danger] = "Restricted Area"
+        redirect_to(root_url)
+      end
+    end
 end

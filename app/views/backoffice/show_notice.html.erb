@@ -1,0 +1,45 @@
+<h1>Detail of Notice</h1>
+
+<p>
+<strong>Title</strong>	
+<br>
+<%= @notice.title%>
+</p>
+
+<p>
+<strong>Date</strong>	
+<br>
+<%= @notice.date.to_date%>
+</p>
+
+<p>
+<strong>Summary</strong>	
+<br>
+<%= @notice.summary%>
+</p>
+
+<p>
+<strong>Text</strong>	
+<br>
+<%= @notice.text%>
+</p>
+
+
+<p>
+<strong>Featured ?</strong>	
+<br>
+<%= @notice.prior%>
+</p>
+
+<p>
+<strong>Active ?</strong>	
+<br>
+<%= @notice.active%>
+</p>
+
+
+<%= link_to 'Change Password', backoffice_user_change_password_path(@user) %>
+<%= link_to 'Edit', backoffice_notice_edit_path(notice) %>
+<%= link_to 'Destroy', backoffice_user_delete_path(notice), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Insert new Notice', new_notice_path %>
+<%= link_to 'List of Users', backoffice_notices_all_path %>
