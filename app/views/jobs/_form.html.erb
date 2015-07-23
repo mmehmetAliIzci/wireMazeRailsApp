@@ -37,13 +37,13 @@
     
     <div class = "col-md-6" style="padding-left: 0px;">
       <div class = "col-md-5">
-        <%= f.input :salary, :collection => [['1-1000'], ['1000-2000'],['2000-3000'],['3000-4000'],['4000-5000'],['5000-6000'],['+5000']]%>
+        <%= f.input :salary, :collection => [['1-1000','1-1000'], ['1000-2000','1000-2000'],['2000-3000','2000-3000'],['3000-4000','3000-4000'],['4000-5000','4000-5000'],['5000-6000','5000-6000'],['+5000','+5000']], :include_blank => false%>
       </div>
     </div>
 
     <div class = "col-md-6" style="padding-left: 0px;">
       <div class = "col-md-5">
-        <%= f.input :type_of_contract, :collection => [['Full-Time' ], ['Part-Time'],['Internship']]%>
+        <%= f.input :type_of_contract, :collection => [['Full-Time','Full-Time' ], ['Part-Time','Part-Time'],['Internship','Internship']], :include_blank => false%>
       </div>
     </div>
     <div class = "col-md-4">
