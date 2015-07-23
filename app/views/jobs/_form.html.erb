@@ -4,21 +4,54 @@
   <%=f.hidden_field :user_id, :value => current_user.id %>
 
   <div class="form-inputs">
-    <%= f.input :avatar, as: :file %>
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :valid_from, as: :datepicker, required: false,
-    :placeholder => 'Select date', input_html: {class: "form-control"},
-    label: "Valid From: " %>
-    <%= f.input :valid_to, as: :datepicker, required: false,
+    <div class = "container col-md-12">
+      <div class="col-md-7" style="padding-left: 0px;">
+
+       <%= f.input :title , input_html: {class: "margin9px"} %>
+      </div> 
+      <div class="col-md-2" style="padding-left: 0px;">
+        <%= f.input :valid_from, as: :datepicker, required: false, :placeholder => 'Select date', input_html: {class: "form-control"},label: "Valid From: " %>
+      </div> 
+      <div class="col-md-2" style="padding-left: 0px;">
+        <%= f.input :valid_to, as: :datepicker, required: false,
     :placeholder => 'Select date', input_html: {class: "form-control"},
     label: "Valid Untill: " %>
-    <%= f.input :salary %>
-    <%= f.input :type_of_contract %>
-    <%= f.input :profession_id, :collection => professions, :label_method => :area_name , :value_method => :id, :label => "Profession", :include_blank => true %>
-    <%= f.input :active %>
+      </div> 
+    </div>
+
+    <div class = "container col-md-12">
+       <%= f.input :description ,as: :text%>
+    </div>
+    
+    <div class = "container col-md-12">
+      <div class="col-md-5" style="padding-left: 0px;">
+       <%= f.input :avatar, as: :file %>
+      </div> 
+    </div>
+    
+    <div class = "container col-md-12">
+      <div class="col-md-5" style="padding-left: 0px;">
+       <%= f.input :profession_id, :collection => professions, :label_method => :area_name , :value_method => :id, :label => "Profession", :include_blank => true %>
+      </div> 
+    </div>
+    
+    <div class = "col-md-6" style="padding-left: 0px;">
+      <div class = "col-md-5">
+        <%= f.input :salary, :collection => [['1-1000'], ['1000-2000'],['2000-3000'],['3000-4000'],['4000-5000'],['5000-6000'],['+5000']]%>
+      </div>
+    </div>
+
+    <div class = "col-md-6" style="padding-left: 0px;">
+      <div class = "col-md-5">
+        <%= f.input :type_of_contract, :collection => [['Full-Time' ], ['Part-Time'],['Internship']]%>
+      </div>
+    </div>
+    <div class = "col-md-4">
+      <%= f.input :active %>  
+    </div>
     
   </div>
+    
 
   <div class="form-actions">
     <%= f.button :submit  ,class: "btn btn-primary" %>

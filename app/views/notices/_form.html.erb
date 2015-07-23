@@ -2,21 +2,61 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :avatar, as: :file %>
-    <%= f.input :title %>
-    <%= f.input :date, as: :datepicker, required: true,
-    :placeholder => 'Select date', input_html: {class: "form-control"},
-    label: "Date: " %>
-    <%= f.label :summary %>
+
+    <div class = "container col-md-12">
+      <div class="col-md-7" style="padding-left: 0px;">
+
+       <%= f.input :title , input_html: {class: "margin9px"} %>
+      </div> 
+      <div class="col-md-3" style="padding-left: 0px;">
+        <%= f.input :date, as: :datepicker, required: true,
+        :placeholder => 'Select date', input_html: {class: "form-control"},
+        label: "Date: " %>
+      </div> 
+      
+      </div> 
+    </div>
+    
+    <div class = "container col-md-12">
+      <%= f.label :summary %>
     <%= f.text_area  :summary , :class => "tinymce"  %>
     <br>
-    <%= f.label :text %>
-    <%= f.text_area  :text, :class => "tinymce"  %>
-    <%= f.input :active %>
-    <%= f.input :prior %>
-  </div>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit , class: "btn btn-primary"%>
+    <div class = "container col-md-12">
+      <%= f.label :text %>
+    <%= f.text_area  :text, :class => "tinymce"  %>
+    <br>
+    </div>
+    
+    <div class = "container col-md-12">
+      <div class="col-md-5" style="padding-left: 0px;">
+       <%= f.input :avatar, as: :file %>
+      </div> 
+      <br>
+    </div>
+    
+    <div class = "col-md-6">
+      <%= f.input :active %>
+    </div>
+    <div class = "col-md-6">
+      <%= f.input :prior %>
+    </div>
+    
+    
+    
+  </div>
+  
+  <div class="container">
+    <div class="form-actions">
+      <div class = "col-md-6" style="padding-left: 0px;">
+        <div class = "col-md-4">
+          <br>
+          <%= f.button :submit  ,class: "btn btn-primary" %>
+          <br>
+          <br>
+        </div>
+      </div>    
+    </div>
   </div>
 <% end %>

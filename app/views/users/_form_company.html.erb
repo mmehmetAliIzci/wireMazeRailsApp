@@ -5,31 +5,94 @@
   <div class="form-inputs">
     <%= hidden_field_tag :type_of_users, @user.type_of_users  %>
     
-    <%= f.input :email %>
+    <br>
+    <div class = "container col-md-12">
+      <div class="col-md-6" style="
+    padding-left: 0px;">
+       <%= f.input :email %>  
+    </div> 
+    </div>
+   
+    
     <% if !isEdit%>
-       <%= f.input :password %>
-      <%= f.input :password_confirmation %>
+      <div class = "col-md-6">
+        <%= f.input :password %>  
+      </div>
+      <div class = "col-md-6">
+        <%= f.input :password_confirmation %>
+      </div>
+      
     <% end%>
-    <%= f.input :name %>
-    <%= f.input :avatar, as: :file %>
-    <%= f.input :address %>
-    <%= f.input :post_code %>
-    <%= f.input :contact %>
-    <%= f.input :personal_page %>
-    <%= f.input :birthday, as: :datepicker, required: true %>
-    <%= f.input :id_number %>
+
+    <div class = "col-md-6">
+      <%= f.input :name %>
+    </div>
+    <div class = "col-md-6">
+      <%= f.input :avatar, as: :file %>
+    </div>
+    
+    <div class = "col-md-12">
+      <%= f.input :address %>
+    </div>
+    
+    <div class = "col-md-6" style="
+    padding-left: 0px;">
+      <div class = "col-md-3">
+        <%= f.input :post_code %>
+      </div>
+    </div>
+    
+    
+    <div class = "col-md-6" style="
+    padding-left: 0px;">
+      <div class = "col-md-3">
+        <%= f.association :city, label_method: :city_name, value_method: :id , required: true %>
+      </div>
+      
+    </div>
+    
+    <div class = "col-md-6">
+      <%= f.input :contact , :input_html => { class: 'small_text_box' } %>
+    </div>
+    <div class = "col-md-6">
+      <%= f.input :personal_page %>
+    </div>
+
+    <div class = "col-md-6" style="
+    padding-left: 0px;">
+      <div class = "col-md-3">
+         <%= f.input :id_number %>
+      </div>
+      
+    </div>
+    
+   <div class = "col-md-6" style="
+    padding-left: 0px;">
+      <div class = "col-md-4">
+          <%= f.association :profession, label_method: :area_name, value_method: :id , required: true %>
+      </div>
+      
+    </div>
+  
+    <div class = "col-md-12">
+          <%= f.label :presentation %>
+    <%= f.text_area :presentation, :class => "tinymce"  %>
+    </div>
+    
 
     
-    <%= f.association :city, label_method: :city_name, value_method: :id , required: true %>
-    <%= f.label :presentation %>
-    <%= f.text_area :presentation, :class => "tinymce"  %>
-    <br>
-    <%= f.association :profession, label_method: :area_name, value_method: :id , required: true %>
+   
     <%= f.hidden_field :active  %>
     
   </div>
-
+  <br>
   <div class="form-actions">
-    <%= f.button :submit  ,class: "btn btn-primary" %>
+    <div class = "col-md-4">
+      <br>
+      <%= f.button :submit  ,class: "btn btn-primary" %>
+      <br>
+      <br>
+    </div>
+    
   </div>
 <% end %>
