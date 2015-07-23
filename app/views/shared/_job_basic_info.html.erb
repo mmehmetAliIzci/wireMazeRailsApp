@@ -1,2 +1,2 @@
 <h1><%= @job.title %></h1>
-<%= link_to image_tag(@job.avatar.url(:medium)), job_path(@job)  %>
+<%= link_to image_tag(@job.avatar.url(:medium),  :class => "img-responsive"), job_path(@job)  %>

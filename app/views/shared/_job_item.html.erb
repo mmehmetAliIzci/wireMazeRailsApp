@@ -1,11 +1,16 @@
 <li>
 	<div class="row_for_job">
-		<div class="col-md-2">
-		
-	    	<%= link_to image_tag(job.avatar.url(:thumb)), job %>
-		
+	
+		<aside class="col-md-2">
+ 		<section class="job_info">
 
-		</div>
+	    
+	    	<%= link_to image_tag(job.avatar.url(:thumb),  :class => "img-responsive"), job %>
+ 		</section>
+ 
+ 		</aside>
+
+	
 		<div class="col-md-10">
 		<section style="padding-left: 20px;">
 		  	<%= link_to job.title, job_path(job) %>

@@ -1,4 +1,4 @@
 <h1><%= @user.name %></h1>
-<%= link_to image_tag(@user.avatar.url(:medium)), @user %>
+<%= link_to image_tag(@user.avatar.url(:medium),  :class => "img-responsive"), @user %>
 <span><%= link_to "Curriculum Vitae",  @user.cv.url %></span>
 <%= render 'shared/interest_buttons',  user: @user, is_job_element: false %>

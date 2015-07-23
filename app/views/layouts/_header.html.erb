@@ -1,7 +1,6 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "sample app", '#', id: "logo" %>
-  
+<header >
+  <div class="knet-header">
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -12,9 +11,9 @@
             <span class="icon-bar"></span>
           </button>
           <% if logged_in? && current_user.type_of_users == 3%>
-            <%= link_to "sample app", backoffice_home_path, id: "logo" %>
+            <%= link_to "Job Portal", backoffice_home_path, id: "logo" %>
           <%else %>
-            <%= link_to "sample app", root_path, id: "logo" %>
+            <%= link_to "Job Portal", root_path, id: "logo" %>
           <% end %>
           
         </div>
@@ -47,18 +46,7 @@
       </div>
     </nav>
 
-    <% if logged_in? %>
-      <% if current_user.type_of_users == 3 %>
-      
-      <% else %>
-        <li><%= link_to current_user.name, '#' %></li>
-        <li><%= link_to "Log-out", '#' %></li>
-      <% end %>  
-
-    <% else %>
-        <li><%= link_to "Register",   '#' %></li>
-        <li><%= link_to "Log in", '#' %></li>
-    <% end %>
+    
   </div>
 </header>
 

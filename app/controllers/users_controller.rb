@@ -79,10 +79,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.type_of_users = params[:type_of_users]
-    stringdate = params[:user][:birthday]
-    newdate = Date.parse(stringdate)
-    newdate.strftime('%F')
-    @user.birthday = newdate
+
     if @user.save
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."

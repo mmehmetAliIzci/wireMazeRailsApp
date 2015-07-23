@@ -37,3 +37,4 @@ end
 
 gem 'simple_form'
 gem "paperclip", "~> 4.3"
+gem "font-awesome-rails"

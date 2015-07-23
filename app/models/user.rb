@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  has_attached_file :avatar, :styles => { :medium => "165x165", :thumb => "100x100>" }
+  has_attached_file :avatar, :styles => { :medium => "165x165", :thumb => "100x100>" }, :default_url => "/images/normal/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   has_attached_file :cv
   validates_attachment_content_type :cv, :content_type => ['application/pdf', 'application/msword', 'text/plain'], :if => :cv_attached?
