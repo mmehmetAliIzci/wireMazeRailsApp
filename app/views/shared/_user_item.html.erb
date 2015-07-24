@@ -1,10 +1,23 @@
+<li class="ad-list">
+	<div class="s-firm-logo">
+		<%= link_to image_tag(user.avatar.url(:thumb),:class => "img-responsive"), user %>
+	</div>
+	<div class="s-job-infos" >
+		<%= link_to user.name, user, class: 's-job-title s-text-bold s-truncate'  %>
 
-	<li>	
-			<%= link_to image_tag(user.avatar.url(:thumb),  :class => "img-responsive"), user %>
-			<%= user.email %>
-			<%= link_to user.name,user %>
-			<br>
-			<%= render 'shared/interest_buttons', user: user, is_job_element: false  %>
-	 	
-	</li>
-	
+		<div class="s-job-sub-info">
+			<div class="s-pull-right">
+				<span class="s-job-location s-truncate">
+					<span >
+						<%= user.presentation.html_safe %>
+					</span>
+				</span>
+
+			</div>
+		</div>
+	</div>
+	<div class="s-job-transactions">
+		<%= render 'shared/interest_buttons', user: user, is_job_element: false  %>
+	</div>
+
+</li>

@@ -1,13 +1,13 @@
 <br>
 <br>
 <p>
-  <%= @user.presentation.html_safe %>
+  <%= @user.presentation.html_safe if @user.presentation %>
 </p>
 
 <p>
   <strong>Profession:</strong>
   <br>
-  <%= @user.profession.area_name %>
+  <%= @user.profession.area_name if @user.profession.present? %>
 </p>
 
 <% if @user.type_of_users == 1 %>

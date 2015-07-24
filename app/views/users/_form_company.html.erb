@@ -1,6 +1,6 @@
 
 <%= simple_form_for(@user, :html => {:novalidate => true ,:multipart => true}) do |f| %>
-  <%= f.error_notification %>
+<%= f.error_notification %>
 
   <div class="form-inputs">
     <%= hidden_field_tag :type_of_users, @user.type_of_users  %>
@@ -8,82 +8,82 @@
     <br>
     <div class = "container col-md-12">
       <div class="col-md-6" style="
-    padding-left: 0px;">
-       <%= f.input :email %>  
+      padding-left: 0px;">
+      <%= f.input :email %>  
     </div> 
-    </div>
-   
-    
-    <% if !isEdit%>
-      <div class = "col-md-6">
-        <%= f.input :password %>  
-      </div>
-      <div class = "col-md-6">
-        <%= f.input :password_confirmation %>
-      </div>
-      
-    <% end%>
+  </div>
 
-    <div class = "col-md-6">
-      <%= f.input :name %>
-    </div>
-    <div class = "col-md-6">
-      <%= f.input :avatar, as: :file %>
-    </div>
-    
-    <div class = "col-md-12">
-      <%= f.input :address %>
-    </div>
-    
-    <div class = "col-md-6" style="
-    padding-left: 0px;">
-      <div class = "col-md-3">
-        <%= f.input :post_code %>
-      </div>
-    </div>
-    
-    
-    <div class = "col-md-6" style="
-    padding-left: 0px;">
-      <div class = "col-md-3">
-        <%= f.association :city, label_method: :city_name, value_method: :id , required: true %>
-      </div>
-      
-    </div>
-    
-    <div class = "col-md-6">
-      <%= f.input :contact , :input_html => { class: 'small_text_box' } %>
-    </div>
-    <div class = "col-md-6">
-      <%= f.input :personal_page %>
-    </div>
 
-    <div class = "col-md-6" style="
-    padding-left: 0px;">
-      <div class = "col-md-3">
-         <%= f.input :id_number %>
-      </div>
-      
-    </div>
-    
-   <div class = "col-md-6" style="
-    padding-left: 0px;">
-      <div class = "col-md-4">
-          <%= f.association :profession, label_method: :area_name, value_method: :id , required: true %>
-      </div>
-      
-    </div>
-  
-    <div class = "col-md-12">
-          <%= f.label :presentation %>
+  <% if !isEdit%>
+  <div class = "col-md-6">
+    <%= f.input :password %>  
+  </div>
+  <div class = "col-md-6">
+    <%= f.input :password_confirmation %>
+  </div>
+
+  <% end%>
+
+  <div class = "col-md-6">
+    <%= f.input :name %>
+  </div>
+  <div class = "col-md-6">
+    <%= f.input :avatar, as: :file %>
+  </div>
+
+  <div class = "col-md-12">
+    <%= f.input :address %>
+  </div>
+
+  <div class = "col-md-6" style="
+  padding-left: 0px;">
+  <div class = "col-md-3">
+    <%= f.input :post_code %>
+  </div>
+  </div>
+
+
+  <div class = "col-md-6" style="
+  padding-left: 0px;">
+  <div class = "col-md-3">
+    <%= f.association :city, label_method: :city_name, value_method: :id , required: true %>
+  </div>
+
+  </div>
+
+  <div class = "col-md-6">
+    <%= f.input :contact , :input_html => { class: 'small_text_box' } %>
+  </div>
+  <div class = "col-md-6">
+    <%= f.input :personal_page %>
+  </div>
+
+  <div class = "col-md-6" style="
+  padding-left: 0px;">
+  <div class = "col-md-3">
+   <%= f.input :id_number %>
+  </div>
+
+  </div>
+
+  <div class = "col-md-6" style="
+  padding-left: 0px;">
+  <div class = "col-md-4">
+    <%= f.association :profession, label_method: :area_name, value_method: :id , required: true %>
+  </div>
+
+  </div>
+
+  <div class = "col-md-12">
+    <%= f.label :presentation %>
     <%= f.text_area :presentation, :class => "tinymce"  %>
-    </div>
-    
+  </div>
 
-    
-   
-    <%= f.hidden_field :active  %>
-    
+
+
+
+  <%= f.hidden_field :active  %>
+
   </div>
   <br>
   <div class="form-actions">

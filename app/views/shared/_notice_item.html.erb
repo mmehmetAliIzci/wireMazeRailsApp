@@ -1,14 +1,30 @@
-<li>
-	<%= link_to image_tag(notice.avatar.url(:thumb)), notice  %>
-	<%= notice.title %>
-	<%= notice.date %>
-	<%= notice.prior %>
-	<%= notice.active %>
-	<%= link_to 'Show', notice %>
+<li class="ad-list">
+	<div class="s-firm-logo">
+		<%= link_to image_tag(notice.avatar.url(:thumb),:class => "img-responsive"), notice %>
+	</div>
+	<div class="s-job-infos" >
+		<%= link_to notice.title, notice_path(notice), class: 's-job-title s-text-bold s-truncate'  %>
 
-	<% if logged_in? && isAdmin?(current_user) %>
-		<%= link_to 'Edit', edit_notice_path(notice) %>		
-	<%end%>
+		<div class="s-job-sub-info">
+			<%= notice.summary.html_safe %>
 
- 
+			<div class="s-pull-right">
+				<span class="s-job-location s-truncate">
+					<span >
+						
+					</span>
+				</span>
+
+				<span class="s-job-date">
+					<span><%= notice.date.to_date %></span>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="s-job-transactions">
+		<% if logged_in? && isAdmin?(current_user) %>
+			<%= link_to 'Edit', edit_notice_path(notice) %>		
+		<%end%>
+	</div>
+
 </li>

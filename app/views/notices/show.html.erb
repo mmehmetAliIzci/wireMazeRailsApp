@@ -4,7 +4,7 @@
   <h2 class = "text-left"><%= @notice.title %></h2>
 </p>
 <p>
-<%= link_to image_tag(notice.avatar.url(:thumb)), notice  %>
+<%= link_to image_tag(@notice.avatar.url(:thumb)), notice  %>
 </p>
 <p>
   <%= @notice.date.to_date %>

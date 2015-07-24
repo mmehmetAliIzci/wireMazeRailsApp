@@ -54,9 +54,9 @@ class UsersController < ApplicationController
     @user = User.new
     @user.type_of_users = params[:user_type]
     if params[:user_type] == "1"
-      render "users/new"
+      render "new"
     elsif params[:user_type] == "2"
-      render "users/new_company"
+      render "new_company"
     end
   end
 
@@ -85,9 +85,14 @@ class UsersController < ApplicationController
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
     else
-      render 'new'
+      if @user.type_of_users == 2
+        render "new_company"
+      else
+        render "new"
+      end
     end
   end
+
 
   def update_password
     
@@ -133,7 +138,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:cv,:avatar, :profession_id , :email, :password, :password_confirmation, :name, :address, :post_code, :contact, :personal_page, :birthday, :id_number, :presentation, :isworking, :habits, :experience, :type_of_users, :active)
+      params.require(:user).permit(:cv,:avatar, :city_id ,:profession_id , :email, :password, :password_confirmation, :name, :address, :post_code, :contact, :personal_page, :birthday, :id_number, :presentation, :isworking, :habits, :experience, :type_of_users, :active)
     end
 
     def change_pass_params

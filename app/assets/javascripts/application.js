@@ -10,24 +10,34 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 
-
+//= require tinymce
 //= require jquery
 //= require jquery.turbolinks
-//= require 'tinymce-jquery'
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap
-//= require turbolinks
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.js
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.de.js
 
 
-$(document).on("page:load ready", function(){
-    $("input.datepicker").datepicker({
-    	format: "yyyy-mm-dd",
-    	autoclose: true,
-    	todayHighlight: true
-    });
-});
+function getStats(id) {
+    var body = tinymce.get(id).getBody(), text = tinymce.trim(body.innerText || body.textContent);
+
+    return {
+        chars: text.length,
+        words: text.split(/[\w\u2019\'-]+/).length
+    };
+}
+
+$(document).on("page:load ready", 
+	function(){
+	    $("input.datepicker").datepicker({
+	    	format: "yyyy-mm-dd",
+	    	autoclose: true,
+	    	todayHighlight: true
+	    });
+	}
+
+);

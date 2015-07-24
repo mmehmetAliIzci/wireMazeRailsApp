@@ -1,28 +1,30 @@
-<li>
-	<div class="row_for_job">
-	
-		<aside class="col-md-2">
- 		<section class="job_info">
 
-	    
-	    	<%= link_to image_tag(job.avatar.url(:thumb),  :class => "img-responsive"), job %>
- 		</section>
- 
- 		</aside>
-
-	
-		<div class="col-md-10">
-		<section style="padding-left: 20px;">
-		  	<%= link_to job.title, job_path(job) %>
-		    <br>
-			<%= job.valid_from %>
-			<%= job.valid_to %>
-		    <br>
-			<%= job.user.name %>
-			<%= job.description %>
-		</section>
-		</div>
-		<br>
-	    <%= render 'shared/interest_buttons',  job: job, is_job_element: true %>
+<li class="ad-list">
+	<div class="s-firm-logo">
+		<%= link_to image_tag(job.avatar.url(:thumb),:class => "img-responsive"), job %>
 	</div>
+	<div class="s-job-infos" >
+		<%= link_to job.title, job_path(job), class: 's-job-title s-text-bold s-truncate'  %>
+
+		<div class="s-job-sub-info">
+			<%= job.user.name%>
+
+			<div class="s-pull-right">
+				<span class="s-job-location s-truncate">
+					<span class: "s-job-title s-text-bold s-truncate">
+						<%= job.city.city_name %>
+					</span>
+				</span>
+
+				<span class="s-job-date">
+					<span>Posted: <%= job.valid_from %></span>
+					<span>Untill: <%= job.valid_to %></span>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="s-job-transactions">
+		<%= render 'shared/interest_buttons',  job: job, is_job_element: true %>
+	</div>
+
 </li>

@@ -1,6 +1,7 @@
 
-<%= simple_form_for(@user, :html => {:novalidate => true ,:multipart => true}) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for(@user, :html => {:novalidate => false ,:multipart => true}) do |f| %>
+  <div class="center" style ="width: 50%;margin: auto;"><%= f.error_notification %></div>
+  
 
   <div class="form-inputs">
     <%= hidden_field_tag :type_of_users, @user.type_of_users  %>
