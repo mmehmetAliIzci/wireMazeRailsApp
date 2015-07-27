@@ -1,0 +1,7 @@
+<%= form_for job, url: reactivate_job_url, remote: true do |f| %>
+	
+	<%= hidden_field_tag :job_id, job.id %>
+
+
+	<%= f.submit "Reactivate", class: "s-btn s-outlined s-btn-red s-text-right modalbasvur" %>
+<% end %>

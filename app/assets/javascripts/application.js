@@ -22,22 +22,21 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.de.js
 
 
-function getStats(id) {
-    var body = tinymce.get(id).getBody(), text = tinymce.trim(body.innerText || body.textContent);
-
-    return {
-        chars: text.length,
-        words: text.split(/[\w\u2019\'-]+/).length
-    };
-}
-
 $(document).on("page:load ready", 
 	function(){
+
 	    $("input.datepicker").datepicker({
 	    	format: "yyyy-mm-dd",
 	    	autoclose: true,
 	    	todayHighlight: true
 	    });
+
+	    $(".result_list").on("click", ".pagination a" , function(){
+	    	$.get(this.href,null,null,"script");
+	    	return false;
+	    });
+
 	}
 
 );
+

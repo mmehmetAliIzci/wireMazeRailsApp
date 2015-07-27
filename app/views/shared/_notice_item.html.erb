@@ -6,7 +6,7 @@
 		<%= link_to notice.title, notice_path(notice), class: 's-job-title s-text-bold s-truncate'  %>
 
 		<div class="s-job-sub-info">
-			<%= notice.summary.html_safe %>
+			<%= strip_tags(notice.summary)[1..50]%>...
 
 			<div class="s-pull-right">
 				<span class="s-job-location s-truncate">

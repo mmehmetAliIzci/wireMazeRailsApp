@@ -10,8 +10,9 @@ class CanditatesController < ApplicationController
     @canditates = @canditates.where("profession_id = ?", params[:profession] ) if params[:profession].present?
     @canditates = @canditates.where("city_id = ?", params[:city] ) if params[:city].present?
 
-    @canditates = @canditates.paginate(page: params[:page], :per_page => 8)
+    @canditates = @canditates.paginate(page: params[:page], :per_page => 4)
 
+    
  		
   end
 end

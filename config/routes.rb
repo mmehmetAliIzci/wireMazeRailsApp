@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   patch 'backoffice_notice_update' =>  'backoffice#update_notice'
   delete 'backoffice_notice_delete' => 'backoffice#destroy_notice'
 
-  
+  patch 'reactivate_job' => 'jobs#reactivate_job'
   #  get 'news/:id' => 'news#show'
   
   # The priority is based upon order of creation: first created -> highest priority.

@@ -57,58 +57,55 @@
 
 <div class = "row">
   <div class= "col-md-6">
-   <div class= "portlet light bordered">
-    <div class="portlet-title">
-      <div class="caption font-dark">
-        <span class="caption-subject bold uppercase">Last Companies</span>
+    <div class= "portlet light bordered">
+      <div class="portlet-title">
+        <div class="caption font-dark">
+          <span class="caption-subject bold uppercase">Last Companies</span>
+        </div>
       </div>
-    </div>
-
-    <div class="portlet-body">
-      <div class="CSSAnimationChart">
-        <% if @companies_home.present? %>
-        <ul class="s-job-list">
-          <% @companies_home.each do |user| %>
-          <%= render 'shared/user_item', user: user %>
+      <div class="portlet-body">
+        <div class="CSSAnimationChart">
+          <% if @companies_home.present? %>
+          <ul class="s-job-list">
+            <% @companies_home.each do |user| %>
+            <%= render 'shared/user_item', user: user %>
+            <% end %>
+          </ul>
+          <br>
+          <%= link_to 'Show All Companies', companies_path %>
+          <% else %>
+          <p>There are no companies</p>
           <% end %>
-        </ul>
-        <br>
-        <%= link_to 'Show All Companies', companies_path %>
-        <% else %>
-        <p>There are no companies</p>
-        <% end %>
-      </div>
-    </div>
-    
-  </div>
-  
-</div>
-<div class= "col-md-6">
-  <div class= "portlet light bordered">
-    <div class="portlet-title">
-      <div class="caption font-dark">
-        <span class="caption-subject bold uppercase">Last Canditates</span>
-      </div>
-    </div>
-
-    <div class="portlet-body">
-      <div class="CSSAnimationChart">
-        <% if @canditates_home.present? %>
-        <ul class="s-job-list">
-          <% @canditates_home.each do |user| %>
-          <%= render 'shared/user_item', user: user %>
-          <% end %>
-        </ul>
-        <br>
-        <%= link_to 'Show All Canditates', canditates_path %>
-        <% else %>
-        <p>There are no canditates</p>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
+  <div class= "col-md-6">
+    <div class= "portlet light bordered">
+      <div class="portlet-title">
+        <div class="caption font-dark">
+          <span class="caption-subject bold uppercase">Last Canditates</span>
+        </div>
+      </div>
+
+      <div class="portlet-body">
+        <div class="CSSAnimationChart">
+          <% if @canditates_home.present? %>
+          <ul class="s-job-list">
+            <% @canditates_home.each do |user| %>
+            <%= render 'shared/user_item', user: user %>
+            <% end %>
+          </ul>
+          <br>
+          <%= link_to 'Show All Canditates', canditates_path %>
+          <% else %>
+          <p>There are no canditates</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 

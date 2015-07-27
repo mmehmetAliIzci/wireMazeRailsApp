@@ -54,6 +54,20 @@ class JobsController < ApplicationController
 		redirect_to user_path(current_user)
 	end
 
+	def reactivate_job
+		@job = Job.find(params[:job_id])
+
+		if @job.update_columns(active: true)
+			flash[:info] = "Job reactivated, please update the dates"
+			respond_to do |format|
+			  format.js {render inline: "location.reload();" }
+			end
+		else
+			flash[:danger] = "Job activation unsuccessfull"
+		end
+
+	end
+
 	private
 
 		def set_job
