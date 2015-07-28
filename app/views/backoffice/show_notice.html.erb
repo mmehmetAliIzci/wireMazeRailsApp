@@ -1,47 +1,68 @@
 <h1>Detail of Notice</h1>
 
-<%= link_to image_tag(@notice.avatar.url(:thumb)), @notice  %>
 
-<p>
-<strong>Title</strong>	
-<br>
-<%= @notice.title%>
-</p>
+<div class="col-md-6">
+	<p>
+	<strong>Title</strong>	
+	<br>
+	<%= @notice.title%>
+	</p>
 
-<p>
-<strong>Date</strong>	
-<br>
-<%= @notice.date.to_date%>
-</p>
+</div>
+<div class="col-md-6">
+	<p>
+	<strong>Date</strong>	
+	<br>
+	<%= @notice.date.to_date%>
+	</p>
+</div>
 
+<div class="col-md-12">
 <p>
 <strong>Summary</strong>	
 <br>
-<%= @notice.summary%>
+<%= @notice.summary.html_safe%>
 </p>
+</div>
 
+
+<div class="col-md-12">
 <p>
 <strong>Text</strong>	
 <br>
-<%= @notice.text%>
+<%= @notice.text.html_safe%>
 </p>
 
+</div>
 
+<div class="col-md-12">
 <p>
-<strong>Featured ?</strong>	
+<strong>Image</strong>	
 <br>
-<%= @notice.prior%>
+<%= link_to image_tag(@notice.avatar.url(:thumb)), @notice  %>
 </p>
-
-<p>
-<strong>Active ?</strong>	
-<br>
-<%= @notice.active%>
-</p>
+</div>
 
 
-<%= link_to 'Change Password', backoffice_user_change_password_path(@user) %>
-<%= link_to 'Edit', backoffice_notice_edit_path(notice) %>
-<%= link_to 'Destroy', backoffice_user_delete_path(notice), method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Insert new Notice', new_notice_path %>
-<%= link_to 'List of Users', backoffice_notices_all_path %>
+
+<div class="col-md-6">
+	<p>
+	<strong>Featured ?</strong>	
+	<br>
+	<%= @notice.prior%>
+	</p>
+</div>
+
+<div class="col-md-6">
+	<p>
+	<strong>Active ?</strong>	
+	<br>
+	<%= @notice.active%>
+	</p>
+</div>
+
+
+<%= link_to 'Edit', edit_notice_path(@notice) %> |
+<%= link_to 'Destroy', @notice, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Insert new Notice', new_notice_path %> |
+<%= link_to 'List of Notices', backoffice_notices_all_path %>

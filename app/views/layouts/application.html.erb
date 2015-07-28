@@ -1,38 +1,54 @@
 <!DOCTYPE html>
 <html>
-  
-  <head>
+
+<head>
+
+  <title><%= full_title(yield(:title)) %></title>
+
+  <%= stylesheet_link_tag 'application', media: 'all',
+  'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+
+</head>
+<% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>" , style = "margin-top: 40px;"><%= message %></div>
+    <% end %>  
+<body>
+  <%= render 'layouts/header' %>
+  <div class="container" style="min-height: 800px;">
     
-    <title><%= full_title(yield(:title)) %></title>
-    
-    <%= stylesheet_link_tag 'application', media: 'all',
-                                           'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-    <%= render 'layouts/shim' %>
-    
-  </head>
-  <body>
-    <%= render 'layouts/header' %>
-    <div class="container">
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>  
-      <%= yield %>
-    </div>
-  </body>
-  <script>
-    $(document).ready(function() {
-        tinymce.init({
-            selector: 'textarea',
-            setup: function(editor) {
-                editor.on('keyup', function(e) {
+    <%= yield %>
+  </div>
+
+  <footer class="footer">
+  <small>
+    The <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
+    by <a href="http://www.michaelhartl.com/">Michael Hartl</a>
+  </small>
+  <nav>
+    <ul>
+      <li><%= link_to "About",  "#" %></li>
+      <li><%= link_to "Contact", "#" %></li>
+      <li><a href="http://news.railstutorial.org/">News</a></li>
+    </ul>
+  </nav>
+</footer>
+</body>
+
+<script>
+  $(document).ready(function() {
+    tinymce.init({
+      selector: 'textarea',
+      setup: function(editor) {
+        editor.on('keyup', function(e) {
                     // Revalidate the hobbies field
                     //$('#simple_form new_user').formValidation('revalidateField', 'user[presentation]');
-                });
-            }
-        });
+                  });
+      }
     });
-  </script>
+  });
+</script>
 
 </html>

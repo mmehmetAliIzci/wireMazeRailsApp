@@ -6,10 +6,12 @@
 		<%= link_to user.name, user, class: 's-job-title s-text-bold s-truncate'  %>
 
 		<div class="s-job-sub-info">
+
+
 			<div class="s-pull-right">
 				<span class="s-job-location s-truncate">
-					<span >
-						<%= user.presentation.html_safe %>
+					<span class: "s-job-title s-text-bold s-truncate">
+						<%= strip_tags(user.presentation)[1..50]%>
 					</span>
 				</span>
 

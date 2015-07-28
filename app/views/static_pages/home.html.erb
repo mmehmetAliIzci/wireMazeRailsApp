@@ -1,3 +1,25 @@
+<div class="scv-home-hero scv-clearfix" style="background-image: url(https://cdn3.secretcv.com/files_scv/image/1433940502_b.jpg);margin-left: -13%;margin-right: -13%;margin-top: -4%;">
+  <input type="hidden" value="files_scv/image/1433940502" id="home-image">
+  <p class="scv-home-slogan" style=" color:#ffffff; text-shadow:none;">Find your Dream Job in In JOB PORTAL <span class="s-text-semibold">in between <%= Job.count%><br>offers!<br></p>
+  <div class="scv-home-search" itemscope="" itemtype="http://schema.org/WebSite">
+    <div class="container">
+      <%= form_tag(jobs_path, :method => "get", id: "search-form") do %>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="col-md-4"><%= text_field_tag :search, params[:search], placeholder: "Example: Ruby Developer.." , class: "form-control " %> </div>
+          <div class="col-md-4"><%= select_tag "city", (options_from_collection_for_select(cities, "id", "city_name", @prev_city)).html_safe , prompt: "Select City", class: "form-control" , style: "height: 60px;"%> </div>
+          <div class="col-md-4"><%= submit_tag "Search", class: "btn btn-primary btn-md" , style: "height: 60px;" %></div>
+        </div>
+        <div class="col-md-2"></div>
+     <% end %>   
+
+    </div>
+     
+  </div>
+</div>
+
+<div class= "knet-header"></div>
+
 <div class = "row">
 
   <div class= "col-md-6">

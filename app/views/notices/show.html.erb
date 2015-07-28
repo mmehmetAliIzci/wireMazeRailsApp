@@ -4,7 +4,7 @@
   <h2 class = "text-left"><%= @notice.title %></h2>
 </p>
 <p>
-<%= link_to image_tag(@notice.avatar.url(:thumb)), notice  %>
+<%= link_to image_tag(@notice.avatar.url(:large), style: "float: right;"), notice  %>
 </p>
 <p>
   <%= @notice.date.to_date %>
@@ -15,5 +15,11 @@
   <%= @notice.text.html_safe %>
 </p>
 <br>
-<%= link_to 'Show All News', notices_path %> 
+<% if logged_in? && isAdmin?(current_user) %>
+	<%= link_to 'Show All News', backoffice_notices_all_path %> 
+<% else%>
+	<%= link_to 'Show All News', notices_path %> 
+<% end%>
+<% %>
+
 

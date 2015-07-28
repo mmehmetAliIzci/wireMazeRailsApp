@@ -162,9 +162,6 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
-input {
-  height: auto !important;
-}
 
 #error_explanation {
   color: red;
@@ -528,3 +525,42 @@ hr.ustayrac {
   background-image: url('/images/banner_navbar.jpg') ;
   background-repeat: repeat-x ;
 }
+
+.scv-home-hero {
+ 
+  height: 440px;
+  background-color: #ccc;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  position: relative;
+}
+
+.scv-home-slogan {
+  color: #ffffff;
+  font-size: 24px;
+  text-shadow: 0 2px 2px #000000;
+  text-align: center;
+  padding-top: 110px;
+  margin-bottom: 40px;
+  font-family: 'OpenSansRegular', sans-serif;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.scv-home-search input[type="text"] {
+  float: left;
+  height: 60px;
+
+  font-size: 16px;
+  color: wheat;
+}
+
+

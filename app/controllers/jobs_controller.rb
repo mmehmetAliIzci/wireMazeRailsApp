@@ -11,7 +11,7 @@ class JobsController < ApplicationController
     	@jobs = @jobs.where("profession_id = ?", params[:profession] ) if params[:profession].present?
     	@jobs = @jobs.where("city_id = ?", params[:city] ) if params[:city].present?
 
-    	@jobs = @jobs.paginate(page: params[:page], :per_page => 8)
+    	@jobs = @jobs.paginate(page: params[:page], :per_page => 6)
 	end
 
 	def show

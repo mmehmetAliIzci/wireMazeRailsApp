@@ -1,31 +1,8 @@
 <h1>Listing Notices</h1>
 
-<table class="table  table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Notice</th>
-      <th>Date</th>
-      <th>Featured</th>
-      <th>Active</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @notices.each do |notice| %>
-      <tr>
-        <td><%= notice.title %></td>
-        <td><%= notice.date.to_date %></td>
-        <td><%= notice.prior %></td>
-        <td><%= notice.active %></td>
-        <td><%= link_to 'Show', backoffice_notice_show_path(notice) %></td>
-        <td><%= link_to 'Edit', edit_notice_path(notice) %></td>
-        <td><%= link_to 'Destroy', notice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-    <%= will_paginate @notices, :param_name => 'page' %>
-  </tbody>
-</table>
+<div class ="result_list">
+      <%= render 'notices' %>
+  </div>
 
 <br>
 
