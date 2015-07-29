@@ -34,6 +34,12 @@
        <%= f.input :profession_id, :collection => professions, :label_method => :area_name , :value_method => :id, :label => "Profession", :include_blank => true %>
       </div> 
     </div>
+
+    <div class = "container col-md-12">
+      <div class="col-md-5" style="padding-left: 0px;">
+       <%= f.input :city_id, :collection => cities, :label_method => :city_name , :value_method => :id, :label => "City", :include_blank => true %>
+      </div> 
+    </div>
     
     <div class = "col-md-6" style="padding-left: 0px;">
       <div class = "col-md-5">

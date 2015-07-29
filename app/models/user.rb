@@ -33,8 +33,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :password_confirmation, presence: true, length: { minimum: 6 }, allow_nil: true 
   validates :presentation, length: {maximum: 100}
-  validates :city_id, presence: true, allow_nil: true;
-  validates :profession_id, presence: true, allow_nil: true;
+  validates :city, presence: true, allow_nil: true;
+  validates :profession, presence: true, allow_nil: true;
 
 
   def following_job?(job,user)
@@ -42,7 +42,11 @@ class User < ActiveRecord::Base
   end
 
   def self.search(search)
-    where("name ILIKE ?", "%#{search}%")
+    if search
+      where("name ILIKE ?", "%#{search}%")
+    else
+      all
+    end
   end
   
   # Activates an account.

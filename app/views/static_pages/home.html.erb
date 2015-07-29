@@ -3,7 +3,7 @@
   <p class="scv-home-slogan" style=" color:#ffffff; text-shadow:none;">Find your Dream Job in In JOB PORTAL <span class="s-text-semibold">in between <%= Job.count%><br>offers!<br></p>
   <div class="scv-home-search" itemscope="" itemtype="http://schema.org/WebSite">
     <div class="container">
-      <%= form_tag(jobs_path, :method => "get", id: "search-form") do %>
+      <%= form_tag(jobs_path, :method => "get") do %>
         <div class="col-md-2"></div>
         <div class="col-md-8">
           <div class="col-md-4"><%= text_field_tag :search, params[:search], placeholder: "Example: Ruby Developer.." , class: "form-control " %> </div>

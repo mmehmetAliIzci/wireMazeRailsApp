@@ -36,6 +36,11 @@ $(document).on("page:load ready",
 	    	return false;
 	    });
 
+	    $("#search-form").submit(function(){
+	    	$.get(this.action, $(this).serialize(), null , "script");
+	    	return false;
+	    });
+
 	}
 
 );

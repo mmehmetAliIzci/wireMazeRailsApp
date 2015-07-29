@@ -34,6 +34,7 @@ class JobsController < ApplicationController
 	    if @job.save
 	      redirect_to @job
 	    else
+	    Rails.logger.info(@job.errors.inspect)
 	      render 'new'
 	    end
 	end

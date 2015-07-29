@@ -4,6 +4,7 @@ class RelationshipsController < ApplicationController
 	def create
 		@user = User.find(params[:followed_id])
 		current_user.follow(@user)
+		UserMailer.interested_action(@user).deliver_now
 		respond_to do |format|
 		  format.js {render inline: "location.reload();" }
 		end

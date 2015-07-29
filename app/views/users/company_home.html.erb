@@ -1,64 +1,103 @@
-<div class= "center col-md-6">
+
+<div class= "col-md-6">
+  <div class= "portlet light bordered">
+    <div class="portlet-title">
+      <div class="caption font-dark">
+        <span class="caption-subject bold uppercase">Jobs That I Served</span>
+      </div>
+    </div>
+
+    <div class="portlet-body">
+      <div class="CSSAnimationChart2">
+        <% if @jobs_served_active.present? %>
+        <ul class="s-job-list">
+          <% @jobs_served_active.each do |job| %>
+          <%= render 'shared/job_item', job: job %>
+          <% end %>
+        </ul>
+        <%= will_paginate @jobs_served_active, :param_name => 'jobs_page_active' %>
+        <% else %>
+        <p>There are no job offers that you offered</p>
+        <% end %>
+
+      </div>     
+    </div>
   
-  <div class= "center jumbotron ">
-    <h2> Jobs That I Served</h2>
-    <% if @jobs_served_active.present? %>
-      <ul class="users">
-        <% @jobs_served_active.each do |job| %>
-           <%= render 'shared/job_item', job: job %>
-        <% end %>
-      </ul>
-    <%= will_paginate @jobs_served_active, :param_name => 'jobs_page_active' %>
-      
-    <% else %>
-      <p>There are no jobs that you served actively</p>
-    <% end %>
-    <br>
-    <%= link_to 'Add new Offer', new_job_path , class: "btn btn-primary btn-sm" %> 
   </div>
-
-  <p>
-
-   <div class= "center jumbotron ">
-    <h2> History</h2>
-    <% if @jobs_served_passive.present? %>
-      <ul class="users">
-        <% @jobs_served_passive.each do |job| %>
-           <%= render 'shared/job_item', job: job %>
-        <% end %>
-      </ul>
-    <%= will_paginate @jobs_served_passive, :param_name => 'jobs_page_passive' %>
-      
-    <% else %>
-      <p>There are no jobs that you served in the past </p>
-    <% end %>
-    <br>
-    <%= link_to 'Add new Offer', new_job_path , class: "btn btn-primary btn-sm" %> 
-  </div>
-
 </div>
 
 
-<div class= "center col-md-6">
-  <div class= "center jumbotron ">
-    <h2 > My Area</h2>
-   <%= link_to 'Edit', edit_user_path(current_user) , class: "btn btn-primary btn-sm" %> 
-   <%= link_to 'Change Password', change_password_user_path , class: "btn btn-primary btn-sm" %> 
-  </div>
-  <p>
-  
-  <div class= "center jumbotron ">
-    <h2> Canditates That interested to me</h2>
-    <% if @canditates_interested_to_me.present? %>
-      <ul class="users">
-        <% @canditates_interested_to_me.each do |user| %>
-           <%= render 'shared/user_item', user: user %>
-        <% end %>
-      </ul>
-    <%= will_paginate @canditates_interested_to_me,  :param_name => 'companies_page' %>
-      
-    <% else %>
-      <p>There are no Canditates interested in you </p>
-    <% end %>
+<div class= "col-md-6">
+  <div class= "portlet light bordered">
+    <div class="portlet-title">
+      <div class="caption font-dark">
+        <span class="caption-subject bold uppercase">My Area</span>
+      </div>
+    </div>
+
+    <div class="portlet-body">
+      <div class="CSSAnimationChart2">
+        <%=image_tag(current_user.avatar.url(:medium),:class => "img-responsive") %>
+      <%= render 'shared/user_info' %>
+        <%= link_to 'Edit', edit_user_path(current_user) , class: "btn btn-primary btn-sm" %> 
+        <%= link_to 'Change Password', change_password_user_path , class: "btn btn-primary btn-sm" %> 
+      </div>
+    </div>
   </div>
 </div>
+
+
+<div class= "col-md-6">
+  <div class= "portlet light bordered">
+    <div class="portlet-title">
+      <div class="caption font-dark">
+        <span class="caption-subject bold uppercase">History</span>
+      </div>
+    </div>
+
+    <div class="portlet-body">
+      <div class="CSSAnimationChart2">
+        <% if @jobs_served_passive.present? %>
+        <ul class="s-job-list">
+          <% @jobs_served_passive.each do |job| %>
+          <%= render 'shared/job_item', job: job %>
+          <% end %>
+        </ul>
+        <%= will_paginate @jobs_served_passive, :param_name => 'jobs_page_passive' %>
+        <% else %>
+        <p>There are no jobs that you served in the past</p>
+        <% end %>
+        <%= link_to 'Add new Offer', new_job_path , class: "btn btn-primary btn-sm" %> 
+      </div>
+    
+    </div>
+    
+  </div>
+</div>
+
+<div class= "col-md-6">
+  <div class= "portlet light bordered">
+    <div class="portlet-title">
+      <div class="caption font-dark">
+        <span class="caption-subject bold uppercase">Canditates That interested to me</span>
+      </div>
+    </div>
+
+    <div class="portlet-body">
+      <div class="CSSAnimationChart2">
+        <% if @canditates_interested_to_me.present? %>
+        <ul class="s-job-list">
+          <% @canditates_interested_to_me.each do |user| %>
+          <%= render 'shared/user_item', user: user %>
+          <% end %>
+        </ul>
+        <%= will_paginate @canditates_interested_to_me, :param_name => 'companies_page' %>
+        <% else %>
+        <p>There are no Canditates interested in you</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,8 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Users</h1>
-
-
+	<div class="col-md-12">
+		<%= form_tag(backoffice_users_all_path, :method => "get", id: "search-form") do %>
+			<br>
+			<div class="col-md-5"><%= text_field_tag :search, params[:search], placeholder: "Search Users" , class: "form-control" %>   </div>
+		
+			<div class="col-md-3"><%= submit_tag "Search", class: "btn btn-primary  btn-md" %></div>	
+		<% end %>  
+	</div>
   <div class ="result_list">
       <%= render 'users' %>
   </div>
