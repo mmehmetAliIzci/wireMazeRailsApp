@@ -33,8 +33,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :password_confirmation, presence: true, length: { minimum: 6 }, allow_nil: true 
   validates :presentation, length: {maximum: 100}
-  validates :city_id, presence: true
-  validates :profession_id, presence: true
+  validates :city_id, presence: true, allow_nil: true;
+  validates :profession_id, presence: true, allow_nil: true;
 
 
   def following_job?(job,user)

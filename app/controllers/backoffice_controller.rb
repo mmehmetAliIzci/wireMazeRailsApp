@@ -41,7 +41,6 @@ class BackofficeController < ApplicationController
 
 	def destroy_user
 		@user.destroy
-	    flash[:notice] = "User Deleted Successfully"
 	    redirect_to backoffice_users_all_path
 	end
 

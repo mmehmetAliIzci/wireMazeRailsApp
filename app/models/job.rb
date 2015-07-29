@@ -5,9 +5,11 @@ class Job < ActiveRecord::Base
   belongs_to :user
   belongs_to :profession
   belongs_to :city
-  has_many :job_user_relationship
+  has_many :job_user_relationship , dependent: :destroy
   validates :title, presence: true, length: { maximum: 80 }
   validates :description, presence: true, length: { maximum: 200 }
+  validates :avatar, presence: true
+  validates :city, presence: true
 
 
   def self.search(search)

@@ -1,44 +1,72 @@
+<div class= "col-md-6">
+  <div class= "portlet light bordered">
+    <div class="portlet-title">
+      <div class="caption font-dark">
+        <span class="caption-subject bold uppercase">Jobs That I Applied</span>
+      </div>
+    </div>
 
-
-<div class= "center  col-md-6">
-  
-  <div class= "center jumbotron margin: 20px">
-  <h2> Jobs That I Applied</h2>
-  <% if @jobs_interested.present? %>
-    <ul class="users">
-      <% @jobs_interested.each do |job| %>
-         <%= render 'shared/job_item', job: job %>
-      <% end %>
-    </ul>
-	<%= will_paginate @jobs_interested, :param_name => 'jobs_page' %>
-    
-  <% else %>
-    <p>There are no jobs that you applied </p>
-  <% end %>
-  </div>
-
-  <div class= "center jumbotron margin: 20px">
-  <h2> Companies That Insterested in Me</h2>
-  <% if @companies_interested_to_me.present? %>
-    <ul class="users">
-      <% @companies_interested_to_me.each do |user| %>
-         <%= render 'shared/user_item', user: user %>
-      <% end %>
-    </ul>
-  <%= will_paginate @companies_interested_to_me,  :param_name => 'companies_page' %>
-    
-  <% else %>
-    <p>There are no companies interested in you </p>
-  <% end %>
+    <div class="portlet-body">
+      <div class="CSSAnimationChart">
+        <% if @jobs_interested.present? %>
+        <ul class="s-job-list">
+          <% @jobs_interested.each do |job| %>
+            <%= render 'shared/job_item', job: job %>
+          <% end %>
+        </ul>
+        <%= will_paginate @jobs_interested, :param_name => 'jobs_page' %>
+        <% else %>
+        <p>There are no job offers that you applied</p>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
- 
 
-<div class= "center jumbotron col-md-6">
-  <h2 > My Area</h2>
-  <div class = "container">
-   <%= link_to 'Edit', edit_user_path(current_user) , class: "btn btn-primary btn-sm" %> 
-   <%= link_to 'Change Password', change_password_user_path , class: "btn btn-primary btn-sm" %> 
 
+<div class= "col-md-6">
+  <div class= "portlet light bordered">
+    <div class="portlet-title">
+      <div class="caption font-dark">
+        <span class="caption-subject bold uppercase">My Area</span>
+      </div>
+    </div>
+
+    <div class="portlet-body">
+      <div class="CSSAnimationChart">
+        <%= link_to 'Edit', edit_user_path(current_user) , class: "btn btn-primary btn-sm" %> 
+        <%= link_to 'Change Password', change_password_user_path , class: "btn btn-primary btn-sm" %> 
+      </div>
+    </div>
   </div>
 </div>
+
+
+<div class= "col-md-6">
+  <div class= "portlet light bordered">
+    <div class="portlet-title">
+      <div class="caption font-dark">
+        <span class="caption-subject bold uppercase">Companies That Insterested in Me</span>
+      </div>
+    </div>
+
+    <div class="portlet-body">
+      <div class="CSSAnimationChart">
+        <% if @companies_interested_to_me.present? %>
+        <ul class="s-job-list">
+          <% @companies_interested_to_me.each do |user| %>
+          <%= render 'shared/user_item', user: user %>
+          <% end %>
+        </ul>
+        <%= will_paginate @companies_interested_to_me, :param_name => 'companies_page' %>
+        <% else %>
+        <p>There are no companies interested in you </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       #if user is canditate redirect to canditate_home
       if @user.type_of_users == 1 
         sql = "SELECT j.* FROM jobs j INNER JOIN (SELECT job_id FROM job_user_relationships jur WHERE jur.user_id = ?) as fp ON (j.id = fp.job_id)"
-        @jobs_interested = JobUserRelationship.find_by_sql [sql, @user.id]
+        @jobs_interested = Job.find_by_sql [sql, @user.id]
         @jobs_interested = @jobs_interested.paginate(page: params[:jobs_page] ,:per_page => 3)
         @companies_interested_to_me = @user.followers.paginate(page: params[:companies_page],:per_page => 3)
         render "canditate_home"
@@ -125,7 +125,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url }
       format.json { head :no_content }
     end
   end

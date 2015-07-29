@@ -1,7 +1,7 @@
 <br>
 <br>
 <p>
-  <%= @user.presentation.html_safe if @user.presentation %>
+  <%= @user.presentation.html_safe if @user.presentation.present? %>
 </p>
 
 <p>
