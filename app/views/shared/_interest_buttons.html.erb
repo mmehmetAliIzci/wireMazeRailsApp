@@ -17,6 +17,9 @@
 			<t>
 			<%= link_to 'Edit', edit_job_path(job) , class: "btn btn-primary btn-sm" %>
 			<br>
+				<%if !job.active %>
+					<%= render 'shared/reactivate_job', job: job %>
+				<%end%>
 		<% end %>
 
 	<!-- We are displaying canditate/company(user) item-->
@@ -34,6 +37,7 @@
 				<%end%>
 				<t>
 				<%= link_to 'Edit', edit_user_path(user) , class: "btn btn-primary btn-sm" %>
+
 				<br>
 			<!-- if we are displaying canditate item to company-->
 			<%elsif current_user.type_of_users == 2 %>

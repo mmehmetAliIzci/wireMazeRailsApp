@@ -1,0 +1,12 @@
+<ul class="s-job-list">
+  <% if @companies.present? %>
+  <% @companies.each do |user| %>
+  <%= render 'shared/user_item', user: user %>
+  <% end %>
+</ul>
+<div class= "center col-md-12 ">
+  <%= will_paginate @companies %>
+</div>
+<% else %>
+<p>There are no canditates found !</p>
+<% end %>

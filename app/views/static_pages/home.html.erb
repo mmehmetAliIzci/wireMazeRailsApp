@@ -1,70 +1,133 @@
+<div class="scv-home-hero scv-clearfix" style="background-image: url(https://cdn3.secretcv.com/files_scv/image/1433940502_b.jpg);margin-left: -13%;margin-right: -13%;margin-top: -5%;">
+  <input type="hidden" value="files_scv/image/1433940502" id="home-image">
+  <p class="scv-home-slogan" style=" color:#ffffff; text-shadow:none;">Find your Dream Job in In JOB PORTAL <span class="s-text-semibold">in between <%= Job.count%><br>offers!<br></p>
+  <div class="scv-home-search" itemscope="" itemtype="http://schema.org/WebSite">
+    <div class="container">
+      <%= form_tag(jobs_path, :method => "get") do %>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="col-md-4"><%= text_field_tag :search, params[:search], placeholder: "Example: Ruby Developer.." , class: "form-control " %> </div>
+          <div class="col-md-4"><%= select_tag "city", (options_from_collection_for_select(cities, "id", "city_name", @prev_city)).html_safe , prompt: "Select City", class: "form-control" , style: "height: 60px;"%> </div>
+          <div class="col-md-4"><%= submit_tag "Search", class: "btn btn-primary btn-md" , style: "height: 60px;" %></div>
+        </div>
+        <div class="col-md-2"></div>
+     <% end %>   
 
-<div class= "center col-md-6">
-  
-  <div class= "center jumbotron">
-    <h2>Last offers</h2>
-  
-    <% if @jobs_home.present? %>
-      <ul class="users">
-        <% @jobs_home.each do |job| %>
-           <%= render 'shared/job_item', job: job %>
-        <% end %>
-      </ul>
+    </div>
+     
+  </div>
+</div>
+
+<div class= "knet-header"></div>
+
+<div class = "row">
+
+  <div class= "col-md-6">
+    <div class= "portlet light bordered">
+      <div class="portlet-title">
+        <div class="caption font-dark">
+          <span class="caption-subject bold uppercase">Last offers</span>
+        </div>
+      </div>
       
-    <br>
-    <%= link_to 'Show All Jobs', jobs_path %>
-    <% else %>
-      <p>There are no job offers>.</p>
-    <% end %>
+      <div class="portlet-body">
+        <div class="CSSAnimationChart">
+          <% if @jobs_home.present? %>
+          <ul class="s-job-list">
+            <% @jobs_home.each do |job| %>
+            <%= render 'shared/job_item', job: job %>
+            <% end %>
+          </ul>
+
+          <br>
+          <%= link_to 'Show All Jobs', jobs_path %>
+          <% else %>
+          <p>There are no job offers>.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <br>
-  <br>
-  <div class= "center jumbotron">
-    <h2>Last Companies</h2>
-    <% if @companies_home.present? %>
-      <ul class="users">
-        <% @companies_home.each do |user| %>
-           <%= render 'shared/user_item', user: user %>
+  
+  <div class= "col-md-6">
+   <div class= "portlet light bordered">
+    <div class="portlet-title">
+      <div class="caption font-dark">
+        <span class="caption-subject bold uppercase">Last News</span>
+      </div>
+    </div>
+
+    <div class="portlet-body">
+      <div class="CSSAnimationChart">
+        <% if @notices_home.present? %>
+        <ul class="s-job-list">
+          <% @notices_home.each do |notice| %>
+          <%= render 'shared/notice_item', notice: notice %>
+          <% end %>
+        </ul>
+        <br>
+        <%= link_to 'Show All Notices', notices_path %>
+        <% else %>
+        <p>There are no news </p>
         <% end %>
-      </ul>
-      <br>
-    <%= link_to 'Show All Companies', companies_path %>
-    <% else %>
-      <p>There are no companies</p>
-    <% end %>
+      </div>
+    </div>
+    
   </div>
 </div>
 
-<div class= "center col-md-6">
-  
-  <div class= "center jumbotron">
-    <h2>Last notices</h2>
-    <% if @notices_home.present? %>
-      <ul class="users">
-        <% @notices_home.each do |notice| %>
-           <%= render 'shared/notice_item', notice: notice %>
-        <% end %>
-      </ul>
-      <br>
-    <%= link_to 'Show All Notices', notices_path %>
-    <% else %>
-      <p>There are no notices </p>
-    <% end %>
+
+<div class = "row">
+  <div class= "col-md-6">
+    <div class= "portlet light bordered">
+      <div class="portlet-title">
+        <div class="caption font-dark">
+          <span class="caption-subject bold uppercase">Last Companies</span>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="CSSAnimationChart">
+          <% if @companies_home.present? %>
+          <ul class="s-job-list">
+            <% @companies_home.each do |user| %>
+            <%= render 'shared/user_item', user: user %>
+            <% end %>
+          </ul>
+          <br>
+          <%= link_to 'Show All Companies', companies_path %>
+          <% else %>
+          <p>There are no companies</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <br>
-  <br>
-  <div class= "center jumbotron">
-    <h2>Last Canditates</h2>
-    <% if @canditates_home.present? %>
-      <ul class="users">
-        <% @canditates_home.each do |user| %>
-           <%= render 'shared/user_item', user: user %>
-        <% end %>
-      </ul>
-        <br>
-    <%= link_to 'Show All Canditates', canditates_path %>
-    <% else %>
-      <p>There are no canditates</p>
-    <% end %>
+
+
+  <div class= "col-md-6">
+    <div class= "portlet light bordered">
+      <div class="portlet-title">
+        <div class="caption font-dark">
+          <span class="caption-subject bold uppercase">Last Canditates</span>
+        </div>
+      </div>
+
+      <div class="portlet-body">
+        <div class="CSSAnimationChart">
+          <% if @canditates_home.present? %>
+          <ul class="s-job-list">
+            <% @canditates_home.each do |user| %>
+            <%= render 'shared/user_item', user: user %>
+            <% end %>
+          </ul>
+          <br>
+          <%= link_to 'Show All Canditates', canditates_path %>
+          <% else %>
+          <p>There are no canditates</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+

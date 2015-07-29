@@ -5,8 +5,7 @@ class BackofficeController < ApplicationController
 	before_action :admin_user
 
 	def index_users
-		@users = User.all
-		@users = @users.paginate(page: params[:page], :per_page => 8)
+		@users = User.all.search(params[:search]).paginate(page: params[:page], :per_page => 8)
 	end
 
 	def show_user
@@ -41,14 +40,13 @@ class BackofficeController < ApplicationController
 
 	def destroy_user
 		@user.destroy
-	    flash[:notice] = "User Deleted Successfully"
 	    redirect_to backoffice_users_all_path
 	end
 
 #notices
 	def index_notices
-		@notices = Notice.all
-		@notices = @notices.paginate(page: params[:page], :per_page => 8)
+		@notices = Notice.all.search(params[:search]).paginate(page: params[:page], :per_page => 8)
+		
 	end
 
 	def show_notice

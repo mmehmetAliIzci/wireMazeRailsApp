@@ -1,0 +1,16 @@
+<ul class="s-job-list">
+  <% if @notices.present? %>
+    <% @notices.each do |notice| %>
+      <div class="users col-md-6">
+        <%= render 'shared/notice_item', notice: notice  %>
+      </div>
+    <% end %>
+  </ul>
+  <div class= "center col-md-12 ">
+    <%= will_paginate @notices, :param_name => 'page' %>
+    </div>
+
+
+<% else %>
+    <p>There are no News found</p>
+  <% end %>

@@ -1,3 +1,16 @@
 // Place all the styles related to the Notices controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.entry-list {
+  display: block;
+  float: left;
+  position: relative;
+  padding: 20px 0 0 0;
+  width: 290px;
+}
+
+.entry-list .entry-thumb {
+  background: #fff;
+  display: block;
+  margin: 0 0 15px 0;
+}

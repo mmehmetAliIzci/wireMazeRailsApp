@@ -11,7 +11,7 @@ class JobsController < ApplicationController
     	@jobs = @jobs.where("profession_id = ?", params[:profession] ) if params[:profession].present?
     	@jobs = @jobs.where("city_id = ?", params[:city] ) if params[:city].present?
 
-    	@jobs = @jobs.paginate(page: params[:page], :per_page => 8)
+    	@jobs = @jobs.paginate(page: params[:page], :per_page => 6)
 	end
 
 	def show
@@ -34,6 +34,7 @@ class JobsController < ApplicationController
 	    if @job.save
 	      redirect_to @job
 	    else
+	    Rails.logger.info(@job.errors.inspect)
 	      render 'new'
 	    end
 	end
@@ -52,6 +53,20 @@ class JobsController < ApplicationController
 		@job.destroy
 		flash[:success] = "Job Deleted"
 		redirect_to user_path(current_user)
+	end
+
+	def reactivate_job
+		@job = Job.find(params[:job_id])
+
+		if @job.update_columns(active: true)
+			flash[:info] = "Job reactivated, please update the dates"
+			respond_to do |format|
+			  format.js {render inline: "location.reload();" }
+			end
+		else
+			flash[:danger] = "Job activation unsuccessfull"
+		end
+
 	end
 
 	private

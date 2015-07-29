@@ -6,7 +6,8 @@ class NoticesController < ApplicationController
   # GET /notices.json
   def index
     @notices = Notice.all
-    @notices = @notices.paginate(page: params[:page], :per_page => 10)
+    @prior = Notice.find_by_sql("SELECT * FROM notices WHERE prior = true ORDER BY id DESC LIMIT 3")
+    @notices = @notices.paginate(page: params[:page], :per_page => 6)
   end
 
   # GET /notices/1
@@ -44,7 +45,7 @@ class NoticesController < ApplicationController
   def update
     respond_to do |format|
       if @notice.update(notice_params)
-        format.html { redirect_to @notice, notice: 'Notice was successfully updated.' }
+        format.html { redirect_to backoffice_notice_show_path(@notice), notice: 'Notice was successfully updated.' }
         format.json { render :show, status: :ok, location: @notice }
       else
         format.html { render :edit }

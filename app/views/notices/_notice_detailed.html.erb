@@ -1,0 +1,30 @@
+<div class="entry-list">
+	
+		<%= link_to image_tag(notice.avatar.url(:medium),:class => " img-responsive" ), notice %>
+
+	<div class="s-job-infos" >
+		<%= link_to notice.title[0..30], notice_path(notice), class: 's-job-title s-text-bold s-truncate'  %>
+
+		<div class="s-job-sub-info">
+			<%= strip_tags(notice.summary)[0..40]%>...
+
+			<div class="s-pull-right">
+				<span class="s-job-location s-truncate">
+					<span >
+						
+					</span>
+				</span>
+
+				<span class="s-job-date">
+					<span><%= notice.date.to_date %></span>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="s-job-transactions">
+		<% if logged_in? && isAdmin?(current_user) %>
+			<%= link_to 'Edit', edit_notice_path(notice) %>		
+		<%end%>
+	</div>
+
+</div>

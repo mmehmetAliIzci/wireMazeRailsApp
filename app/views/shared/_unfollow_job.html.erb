@@ -1,5 +1,5 @@
 <%= form_for(JobUserRelationship.find_by(job_id: job.id , user_id: user.id), html: { method: :delete }, remote: true) do |f| %>
    <div><%= hidden_field_tag :job_id, job.id %>
 			  <%= hidden_field_tag :user_id, user.id %></div>
-  <%= f.submit "Withdraw Interest", class: "btn  col-xs" %>
+  <%= f.submit "Interested", class: "s-btn s-outlined  s-text-right modalbasvur" %>
 <% end %>

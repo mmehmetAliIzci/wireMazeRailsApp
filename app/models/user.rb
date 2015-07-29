@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  has_attached_file :avatar, :styles => { :medium => "165x165", :thumb => "100x100>" }
+  has_attached_file :avatar, :styles => { :medium => "165x165", :thumb => "100x100>" }, :default_url => "/images/normal/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   has_attached_file :cv
   validates_attachment_content_type :cv, :content_type => ['application/pdf', 'application/msword', 'text/plain'], :if => :cv_attached?
@@ -22,12 +22,19 @@ class User < ActiveRecord::Base
   before_create :create_activation_digest
 	before_save   :downcase_email
 	validates :name,  presence: true, length: { maximum: 50 }
-  	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  	validates :email, presence: true, length: { maximum: 255 },
+  
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 60 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  
   has_secure_password
+
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :password_confirmation, presence: true, length: { minimum: 6 }, allow_nil: true 
+  validates :presentation, length: {maximum: 100}
+  validates :city, presence: true, allow_nil: true;
+  validates :profession, presence: true, allow_nil: true;
 
 
   def following_job?(job,user)
@@ -35,7 +42,11 @@ class User < ActiveRecord::Base
   end
 
   def self.search(search)
-    where("name ILIKE ?", "%#{search}%")
+    if search
+      where("name ILIKE ?", "%#{search}%")
+    else
+      all
+    end
   end
   
   # Activates an account.

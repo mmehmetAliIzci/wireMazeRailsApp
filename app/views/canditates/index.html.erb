@@ -1,47 +1,35 @@
 <h1>Listing Canditates</h1>
 <br>
 <br>
-<div class = "center ">
+<div class = "col-md-3" style="margin-bottom: 200px;">
   <%= form_tag(canditates_path, :method => "get", id: "search-form") do %>
-    <div class="col-md-3"> 
     <br>
-      <%= text_field_tag :search, params[:search], placeholder: "Search Canditates" , class: "form-control " %>  
-    </div>
-    <div class="col-md-3"> 
-       <span class="label label-default">Select Profession area</span>
-       <%= select_tag "profession", ("<option></option>" + options_from_collection_for_select(professions, "id", "area_name", @prev_profession)).html_safe , class: "form-control " %> 
-    </div>
-    <div class="col-md-3"> 
-       <span class="label label-default">Select City </span>
-      <%= select_tag "city", ("<option></option>" + options_from_collection_for_select(cities, "id", "city_name", @prev_city)).html_safe , class: "form-control" %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Canditates" , class: "form-control " %> 
+  <br>
+    <span class="label label-default">Select Profession area</span>
+      <%= select_tag "profession", (options_from_collection_for_select(professions, "id", "area_name", @prev_profession)).html_safe, prompt: "Select Profession" , class: "form-control " %> 
     <br>
-    </div>
-    <div class="col-md-3"> 
-      <br>
-       <%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
-    </div>
+    <span class="label label-default">Select City </span>
+      <%= select_tag "city", (options_from_collection_for_select(cities, "id", "city_name", @prev_city)).html_safe ,prompt: "Select City", class: "form-control" %>
     <br>
-  <% end %>  
+    <%= submit_tag "Search", class: "btn btn-primary btn-md" %>
+ <% end %>  
 </div>
 <br>
-<div class= "canditatelist col-md-12">
-  <% if @canditates.present? %>
-    
-      <% @canditates.each do |user| %>
-        
-           <div class="users col-md-6">
-           <%= render 'shared/user_item', user: user %>
-           </div>
-        
-      <% end %>
-    <div class= "center col-md-12 ">
-    <%= will_paginate @canditates, :param_name => 'page' %>
-    </div>
-  <% else %>
-    <p>There are no canditates found !</p>
-  <% end %>
+
+<div class= "canditatelist col-md-8">
+  
+  <label style="font-size: 12pt; color: #626262; padding-left: 10px;"><%= @canditates.count%> Canditate found</label>
+  
+  <div style="margin: 9px 0 9px">
+        <hr class="ustayrac">
+  </div>
+
+  <div class ="result_list">
+      <%= render 'canditates' %>
+  </div>
+
+ 
+
 </div>
 
-
-
-<br>

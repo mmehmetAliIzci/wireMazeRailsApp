@@ -1,27 +1,97 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Notices</h1>
+<h1>News From Our Guyz</h1>
+  
+  <div class= "col-md-9">
+    <div class= "portlet light bordered">
+      <div class="portlet-title">
+        <div class="caption font-dark">
+          <span class="caption-subject bold uppercase">Top News</span>
+        </div>
+      </div>
+      
+      <div class="portlet-body">
+        <div class="CSSAnimationChart">
+          
+          <div class="col-md-12">
+             <% if @prior.present? %>
+              
+              <div id="myCarousel" class="carousel slide">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                  <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                  <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                  <div class="item active">
 
+                    <img class="img-responsive" src="/images/normal/top_stories.jpg" alt="First slide"> 
+                  </div>
+                  <% @prior.each do |notice| %>
+                  <div class="item ">
+                    <%= link_to image_tag(notice.avatar,:class => " img-responsive" ), notice %>
+                  
+                    <div class= "carousel-caption">
+                      <h3> <%=strip_tags(notice.title)[0..50]%></h3>
+                      <h2> <%=strip_tags(notice.summary)[0..50]%></h2>
+                    </div>
+                  </div>
+                      
+                  <% end %>
+                
+                </div>
+
+
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                  <span class="icon-prev" ></span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                  <span class="icon-next" ></span>
+                </a>
+              </div>
+          </div>
+          
+          <div class="col-md-12" style="margin-top: 15px;">
+            <p><%= link_to 'All News', notices_path %></p>  
+          </div>
+          
+          
+          <% else %>
+          <p>There are no top stories>.</p>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class= "col-md-12">
+    <div class= "portlet light bordered">
+      <div class="portlet-title">
+        <div class="caption font-dark">
+          <span class="caption-subject bold uppercase">Other Stories</span>
+        </div>
+      </div>
+      
+      <div class="portlet-body">
+        <div class="CSSAnimationChart" style="
+    height: 1100px;">
+          
+        <div class ="result_list">
+            <%= render 'notices' %>
+        </div>
+          
+          
+        
+        </div>
+      </div>
+    </div>
+  </div>
 
 <div class= "canditatelist col-md-12">
-  <% if @notices.present? %>
-      <% @notices.each do |notice| %>
-        
-           <div class="users col-md-6">
-           <%= render 'shared/notice_item', notice: notice  %>
-           </div>
-         
-      <% end %>
-    <div class= "center col-md-12 ">
-    <%= will_paginate @canditates, :param_name => 'page' %>
-    </div>
-  <% else %>
-    <p>There are no News found</p>
-  <% end %>
+  
 </div>
 
 
-<br>
-<br>
-
-<%= link_to 'New Notice', new_notice_path %>

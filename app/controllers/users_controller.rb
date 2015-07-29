@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       #if user is canditate redirect to canditate_home
       if @user.type_of_users == 1 
         sql = "SELECT j.* FROM jobs j INNER JOIN (SELECT job_id FROM job_user_relationships jur WHERE jur.user_id = ?) as fp ON (j.id = fp.job_id)"
-        @jobs_interested = JobUserRelationship.find_by_sql [sql, @user.id]
+        @jobs_interested = Job.find_by_sql [sql, @user.id]
         @jobs_interested = @jobs_interested.paginate(page: params[:jobs_page] ,:per_page => 3)
         @companies_interested_to_me = @user.followers.paginate(page: params[:companies_page],:per_page => 3)
         render "canditate_home"
@@ -54,9 +54,9 @@ class UsersController < ApplicationController
     @user = User.new
     @user.type_of_users = params[:user_type]
     if params[:user_type] == "1"
-      render "users/new"
+      render "new"
     elsif params[:user_type] == "2"
-      render "users/new_company"
+      render "new_company"
     end
   end
 
@@ -79,18 +79,20 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.type_of_users = params[:type_of_users]
-    stringdate = params[:user][:birthday]
-    newdate = Date.parse(stringdate)
-    newdate.strftime('%F')
-    @user.birthday = newdate
+
     if @user.save
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
     else
-      render 'new'
+      if @user.type_of_users == 2
+        render "new_company"
+      else
+        render "new"
+      end
     end
   end
+
 
   def update_password
     
@@ -113,7 +115,7 @@ class UsersController < ApplicationController
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -123,7 +125,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url }
       format.json { head :no_content }
     end
   end
@@ -136,7 +138,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:cv,:avatar, :profession_id , :email, :password, :password_confirmation, :name, :address, :post_code, :contact, :personal_page, :birthday, :id_number, :presentation, :isworking, :habits, :experience, :type_of_users, :active)
+      params.require(:user).permit(:cv,:avatar, :city_id ,:profession_id , :email, :password, :password_confirmation, :name, :address, :post_code, :contact, :personal_page, :birthday, :id_number, :presentation, :isworking, :habits, :experience, :type_of_users, :active)
     end
 
     def change_pass_params
